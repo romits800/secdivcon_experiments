@@ -19,7 +19,7 @@ This code are published in:
 	file = {Full Text PDF:/home/romi/Zotero/storage/FFC2CXYK/Mantel and Starostin - 2015 - Transforming Out Timing Leaks, More or Less.pdf:application/pdf},
 }
 ```
-and:
+and the actual code in C is provided by:
 ```bibtex
 
 @inproceedings{winderix_compiler-assisted_2021,
