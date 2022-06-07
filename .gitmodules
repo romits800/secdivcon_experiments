@@ -1,0 +1,4 @@
+[submodule "secdivcon"]
+	path = secdivcon
+	url = https://github.com/romits800/divCon.git
+	branch = secconcg_constant_resource_ct
