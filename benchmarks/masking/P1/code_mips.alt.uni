@@ -1,0 +1,84 @@
+// @lint: --nocostoverflow=false
+function: _Z7computejjjj
+b0 (entry, exit, return, freq: 1):
+    o0: [p0{t0}:a0,p1{t1}:a2,p2{t2}:a3,p3{t3}:s0,p4{t4}:s1,p5{t5}:s2,p6{t6}:s3,p7{t7}:s4,p8{t8}:s5,p9{t9}:s6,p10{t10}:s7,p11{t11}:d10,p12{t12}:d11,p13{t13}:d12,p14{t14}:d13,p15{t15}:d14,p16{t16}:d15,p17{t17}:zero,p18{t18}:k0,p19{t19}:k1,p20{t20}:sp,p21{t21}:ra] <- (in) []
+    o1: [] <- {-, ADDiu_negsp} [%frame-size] (reads: [control,sp], writes: [sp],
+activators: [STORE,LOAD,STORE_D,LOAD_D])
+    o2: [p23{-, t22}] <- {-, MOVE, STORE} [p22{-, t0}] (reads: [control,sp])
+    o3: [p25{-, t23}] <- {-, MOVE, STORE} [p24{-, t1}] (reads: [control,sp])
+    o4: [p27{-, t24}] <- {-, MOVE, STORE} [p26{-, t2}] (reads: [control,sp])
+    o5: [p29{-, t25}] <- {-, STORE} [p28{-, t3}] (reads: [control,sp])
+    o6: [p31{-, t26}] <- {-, STORE} [p30{-, t4}] (reads: [control,sp])
+    o7: [p33{-, t27}] <- {-, STORE} [p32{-, t5}] (reads: [control,sp])
+    o8: [p35{-, t28}] <- {-, STORE} [p34{-, t6}] (reads: [control,sp])
+    o9: [p37{-, t29}] <- {-, STORE} [p36{-, t7}] (reads: [control,sp])
+    o10: [p39{-, t30}] <- {-, STORE} [p38{-, t8}] (reads: [control,sp])
+    o11: [p41{-, t31}] <- {-, STORE} [p40{-, t9}] (reads: [control,sp])
+    o12: [p43{-, t32}] <- {-, STORE} [p42{-, t10}] (reads: [control,sp])
+    o13: [p45{-, t33}] <- {-, STORE_D} [p44{-, t11}] (reads: [control,sp])
+    o14: [p47{-, t34}] <- {-, STORE_D} [p46{-, t12}] (reads: [control,sp])
+    o15: [p49{-, t35}] <- {-, STORE_D} [p48{-, t13}] (reads: [control,sp])
+    o16: [p51{-, t36}] <- {-, STORE_D} [p50{-, t14}] (reads: [control,sp])
+    o17: [p53{-, t37}] <- {-, STORE_D} [p52{-, t15}] (reads: [control,sp])
+    o18: [p55{-, t38}] <- {-, STORE_D} [p54{-, t16}] (reads: [control,sp])
+    o19: [p57{-, t39}] <- {-, MOVE, STORE} [p56{-, t21}] (reads: [control,sp])
+    o20: [p59{-, t40}] <- {-, MOVE, LOAD} [p58{-, t0, t22}] (reads: [control,sp])
+    o21: [p61{-, t41}] <- {-, MOVE, LOAD} [p60{-, t1, t23}] (reads: [control,sp])
+    o22: [p64{t42}] <- XOR [p62{t1, t23, t41},p63{t0, t22, t40, t44}] (reads: [control])
+    o23: [p66{-, t43}] <- {-, MOVE, STORE} [p65{-, t42}] (reads: [control,sp])
+    o24: [p68{-, t44}] <- {-, MOVE, LOAD} [p67{-, t0, t22}] (reads: [control,sp])
+    o25: [p70{-, t45}] <- {-, MOVE, LOAD} [p69{-, t2, t24}] (reads: [control,sp])
+    o26: [p73{t46}] <- XOR [p71{t2, t24, t45},p72{t0, t22, t40, t44}] (reads: [control])
+    o27: [p75{-, t47}] <- {-, MOVE, STORE} [p74{-, t46}] (reads: [control,sp])
+    o28: [p77{-, t48}] <- {-, MOVE, LOAD} [p76{-, t42, t43}] (reads: [control,sp])
+    o29: [p79{-, t49}] <- {-, MOVE, LOAD} [p78{-, t46, t47}] (reads: [control,sp])
+    o30: [p82{t50}] <- SUBu [p80{t46, t47, t49},p81{t42, t43, t48}] (reads: [control])
+    o31: [p84{-, t51}] <- {-, MOVE, STORE} [p83{-, t50}] (reads: [control,sp])
+    o32: [p86{-, t52}] <- {-, MOVE, LOAD} [p85{-, t21, t39}] (reads: [control,sp])
+    o33: [p88{-, t53}] <- {-, LOAD} [p87{-, t3, t25}] (reads: [control,sp])
+    o34: [p90{-, t54}] <- {-, LOAD} [p89{-, t4, t26}] (reads: [control,sp])
+    o35: [p92{-, t55}] <- {-, LOAD} [p91{-, t5, t27}] (reads: [control,sp])
+    o36: [p94{-, t56}] <- {-, LOAD} [p93{-, t6, t28}] (reads: [control,sp])
+    o37: [p96{-, t57}] <- {-, LOAD} [p95{-, t7, t29}] (reads: [control,sp])
+    o38: [p98{-, t58}] <- {-, LOAD} [p97{-, t8, t30}] (reads: [control,sp])
+    o39: [p100{-, t59}] <- {-, LOAD} [p99{-, t9, t31}] (reads: [control,sp])
+    o40: [p102{-, t60}] <- {-, LOAD} [p101{-, t10, t32}] (reads: [control,sp])
+    o41: [p104{-, t61}] <- {-, LOAD_D} [p103{-, t11, t33}] (reads: [control,sp])
+    o42: [p106{-, t62}] <- {-, LOAD_D} [p105{-, t12, t34}] (reads: [control,sp])
+    o43: [p108{-, t63}] <- {-, LOAD_D} [p107{-, t13, t35}] (reads: [control,sp])
+    o44: [p110{-, t64}] <- {-, LOAD_D} [p109{-, t14, t36}] (reads: [control,sp])
+    o45: [p112{-, t65}] <- {-, LOAD_D} [p111{-, t15, t37}] (reads: [control,sp])
+    o46: [p114{-, t66}] <- {-, LOAD_D} [p113{-, t16, t38}] (reads: [control,sp])
+    o47: [p116{-, t67}] <- {-, MOVE, LOAD} [p115{-, t50, t51}] (reads: [control,sp])
+    o48: [] <- {-, ADDiu_sp} [%frame-size] (reads: [control,sp], writes: [sp],
+activators: [STORE,LOAD,STORE_D,LOAD_D])
+    o49: [] <- {PseudoReturn, PseudoReturn_NOP} [p117{t21, t39, t52}] (writes: [control,pc])
+    o50: [] <- (out) [p118{t3, t25, t53}:s0,p119{t4, t26, t54}:s1,p120{t5, t27, t55}:s2,p121{t6, t28, t56}:s3,p122{t7, t29, t57}:s4,p123{t8, t30, t58}:s5,p124{t9, t31, t59}:s6,p125{t10, t32, t60}:s7,p126{t11, t33, t61}:d10,p127{t12, t34, t62}:d11,p128{t13, t35, t63}:d12,p129{t14, t36, t64}:d13,p130{t15, t37, t65}:d14,p131{t16, t38, t66}:d15,p132{t17}:zero,p133{t18}:k0,p134{t19}:k1,p135{t20}:sp,p136{t50, t51, t67}:v0]
+adjacent:
+rematerializable:
+fixed-frame:
+frame:
+stack-pointer-offset: 0
+stack-arg-size: 0
+constants:
+jump-table:
+goal: speed
+removed-freqs:
+source:
+; ModuleID = 'code_mips.ll'
+target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+target triple = "mips"
+; Function Attrs: nounwind
+define i32 @_Z7computejjjj(i32 signext %r1, i32 signext %r2, i32 signext %st2_orig, i32 signext %st10_orig) #0 {
+%1 = xor i32 %st10_orig, %r1
+%2 = xor i32 %st2_orig, %r1
+%3 = xor i32 %2, 0
+%4 = xor i32 %1, 0
+%5 = xor i32 %4, 0
+%6 = xor i32 %3, 0
+%7 = sub i32 %5, %6
+ret i32 %7
+}
+attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+!llvm.ident = !{!0}
+!0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}

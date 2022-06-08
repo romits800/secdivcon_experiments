@@ -1,0 +1,1 @@
+{"solver": "gecode-solver", "has_solution": false, "proven": false, "cost": [-1], "failures": 102173, "nodes": 206829, "presolver_time": 735, "gecode_presolving_time": 73760, "solver_time": 281153, "global_int_variables": 23466, "global_bool_variables": 12187, "global_set_variables": 393}
