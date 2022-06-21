@@ -1,0 +1,109 @@
+--- |
+  ; ModuleID = 'SecMultLinear_wires_1_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc i32 @_Z7SecMultiiiii(i32 %a, i32 %b, i32 %a0, i32 %r0_01, i32 %p0_01) #0 {
+    %1 = xor i32 %a, %a0
+    %2 = mul nsw i32 %a0, %p0_01
+    %3 = xor i32 %r0_01, %2
+    %4 = mul nsw i32 %p0_01, %a0
+    %5 = xor i32 %3, %4
+    %6 = xor i32 %1, %p0_01
+    %7 = mul nsw i32 %a0, %6
+    %8 = xor i32 %5, %7
+    %9 = xor i32 %1, %p0_01
+    %10 = mul nsw i32 %9, %a0
+    %11 = xor i32 %8, %10
+    %12 = mul nsw i32 %a0, %a0
+    %13 = xor i32 %12, %r0_01
+    %14 = mul nsw i32 %1, %1
+    %15 = xor i32 %14, %11
+    %16 = xor i32 %13, %15
+    ret i32 %16
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            _Z7SecMultiiiii
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+  - { id: 14, class: tgpr }
+  - { id: 15, class: tgpr }
+  - { id: 16, class: tgpr }
+  - { id: 17, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%0' }
+  - { reg: '%r2', virtual-reg: '%2' }
+  - { reg: '%r3', virtual-reg: '%3' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+fixedStack:      
+  - { id: 0, offset: 0, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %r0, %r2, %r3
+    liveouts: %r0
+  
+    %3 = COPY %r3
+    %2 = COPY %r2
+    %0 = COPY %r0
+    %4 = tLDRspi %fixed-stack.0, 0, 14, _, <0x3ec0eb0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %5, %cpsr = tMUL %2, %4, 14, _
+    %6, %cpsr = tEOR %3, %5, 14, _
+    %7, %cpsr = tEOR %6, %5, 14, _
+    %8, %cpsr = tEOR %0, %2, 14, _
+    %9, %cpsr = tEOR %8, %4, 14, _
+    %10, %cpsr = tMUL %2, %9, 14, _
+    %11, %cpsr = tEOR %7, %10, 14, _
+    %12, %cpsr = tEOR %11, %10, 14, _
+    %13, %cpsr = tMUL %8, %8, 14, _
+    %14, %cpsr = tEOR %13, killed %12, 14, _
+    %15, %cpsr = tMUL %2, %2, 14, _
+    %16, %cpsr = tEOR %15, %3, 14, _
+    %17, %cpsr = tEOR %16, killed %14, 14, _
+    %r0 = COPY %17
+    tBX_RET 14, _, implicit %r0
+
+...

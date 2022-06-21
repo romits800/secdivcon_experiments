@@ -1,0 +1,160 @@
+--- |
+  ; ModuleID = 'kruskal_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @find(i32 signext %x, i32* %par, i32 signext %len) #0 {
+    %res = alloca i32, align 4
+    br label %1
+  
+  ; <label>:1                                       ; preds = %13, %0
+    %lsr.iv = phi i32 [ -1, %0 ], [ %lsr.iv.next, %13 ]
+    %result.0 = phi i32 [ %x, %0 ], [ %result.1, %13 ]
+    %.0 = phi i32 [ %x, %0 ], [ %.1, %13 ]
+    %lsr.iv.next = add nsw i32 %lsr.iv, 1
+    %2 = icmp slt i32 %lsr.iv.next, %len
+    br i1 %2, label %3, label %14
+  
+  ; <label>:3                                       ; preds = %1
+    %4 = getelementptr inbounds i32, i32* %par, i32 %.0
+    %5 = load i32, i32* %4, align 4
+    %6 = icmp eq i32 %5, %.0
+    br i1 %6, label %7, label %10
+  
+  ; <label>:7                                       ; preds = %3
+    %8 = getelementptr inbounds i32, i32* %par, i32 %.0
+    %9 = load i32, i32* %8, align 4
+    store volatile i32 %9, i32* %res, align 4
+    br label %13
+  
+  ; <label>:10                                      ; preds = %3
+    %11 = getelementptr inbounds i32, i32* %par, i32 %.0
+    %12 = load i32, i32* %11, align 4
+    store volatile i32 %.0, i32* %res, align 4
+    br label %13
+  
+  ; <label>:13                                      ; preds = %10, %7
+    %result.1 = phi i32 [ %.0, %7 ], [ %result.0, %10 ]
+    %.1 = phi i32 [ %.0, %7 ], [ %12, %10 ]
+    br label %1
+  
+  ; <label>:14                                      ; preds = %1
+    ret i32 %result.0
+  }
+  
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  attributes #1 = { nobuiltin }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            find
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+  - { id: 16, class: gpr32 }
+  - { id: 17, class: gpr32 }
+  - { id: 18, class: gpr32 }
+  - { id: 19, class: gpr32 }
+  - { id: 20, class: gpr32 }
+  - { id: 21, class: gpr32 }
+  - { id: 22, class: gpr32 }
+  - { id: 23, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%7' }
+  - { reg: '%a1', virtual-reg: '%8' }
+  - { reg: '%a2', virtual-reg: '%9' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+stack:           
+  - { id: 0, name: res, offset: 0, size: 4, alignment: 4 }
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    successors: %bb.1(100)
+    liveins: %a0, %a1, %a2
+  
+    %9 = COPY %a2
+    %8 = COPY %a1
+    %7 = COPY %a0
+    %10 = ADDiu %zero, -1
+  
+  bb.1 (%ir-block.1, freq 256):
+    successors: %bb.2(96), %bb.6(3)
+  
+    %0 = PHI %10, %bb.0, %3, %bb.3, %3, %bb.4
+    %1 = PHI %7, %bb.0, %20, %bb.3, %22, %bb.4
+    %2 = PHI %7, %bb.0, %20, %bb.3, %4, %bb.4
+    %3 = ADDiu %0, 1
+    %11 = SLT %3, %9
+    BEQ killed %11, %zero, %bb.6, implicit-def dead %at
+    B %bb.2, implicit-def dead %at
+  
+  bb.2 (%ir-block.3, freq 248):
+    successors: %bb.3(50), %bb.4(50)
+  
+    %12 = SLL %2, 2
+    %13 = ADDu %8, %12
+    %14 = LW %13, 0, <0x30078c0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.4)
+    BNE killed %14, %2, %bb.4, implicit-def dead %at
+    B %bb.3, implicit-def dead %at
+  
+  bb.3 (%ir-block.7, freq 124):
+    successors: %bb.1(100)
+  
+    %19 = LW %13, 0, <0x30078c0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.8)
+    SW killed %19, %stack.0.res, 0, <0x30078c0> = !{!"unison-memory-partition", i32 0} :: (volatile store 4 into %ir.res)
+    %20 = COPY %2
+    B %bb.1, implicit-def dead %at
+  
+  bb.4 (%ir-block.10, freq 124):
+    successors: %bb.1(100)
+  
+    %4 = LW %13, 0, <0x30078c0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.11)
+    SW %2, %stack.0.res, 0, <0x30078c0> = !{!"unison-memory-partition", i32 0} :: (volatile store 4 into %ir.res)
+    %22 = COPY %1
+    B %bb.1, implicit-def dead %at
+  
+  bb.6 (%ir-block.14, freq 8):
+    liveouts: %v0
+  
+    %v0 = COPY %1
+    RetRA implicit %v0
+
+...

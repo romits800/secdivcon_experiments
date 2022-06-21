@@ -10,6 +10,8 @@ static int lookupVal(int id)
 int sharevalue_enter(__attribute__((secret)) int ids[], int qty[], int len)
 {
   int shareVal = 0;
+  int shareVal2 = 0;
+  volatile int res;
   int i = 0;
 
   while (i < len) 
@@ -17,9 +19,12 @@ int sharevalue_enter(__attribute__((secret)) int ids[], int qty[], int len)
     int id = ids[i];
     int val = lookupVal(id) * qty[i];
 
-    if (id == SPECIAL_SHARE)
-    {
+    if (id == SPECIAL_SHARE) {
       shareVal = shareVal + val;
+      res = shareVal;
+    } else {
+      shareVal2 = shareVal + val;
+      res = shareVal2;
     }
 
     i++;

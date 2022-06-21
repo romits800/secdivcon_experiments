@@ -1,0 +1,203 @@
+--- |
+  ; ModuleID = 'mulmod8_2_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc i32 @mulmod8_enter(i32 %a, i32 %b) #0 {
+    %res = alloca i32, align 4
+    %1 = and i32 undef, 255
+    %2 = and i32 undef, 255
+    %3 = and i32 %a, 255
+    %4 = and i32 %b, 255
+    %5 = icmp eq i32 %3, 0
+    br i1 %5, label %6, label %15
+  
+  ; <label>:6                                       ; preds = %0
+    %7 = sub nsw i32 257, %4
+    %8 = mul nsw i32 %7, %4
+    %9 = and i32 %8, 255
+    %10 = ashr i32 %8, 8
+    %11 = sub nsw i32 %9, %10
+    %12 = sub nsw i32 %9, %10
+    %13 = ashr i32 %12, 31
+    %14 = add nsw i32 %11, %13
+    store volatile i32 %14, i32* %res, align 4
+    br label %35
+  
+  ; <label>:15                                      ; preds = %0
+    %16 = icmp eq i32 %4, 0
+    br i1 %16, label %17, label %26
+  
+  ; <label>:17                                      ; preds = %15
+    %18 = sub nsw i32 257, %3
+    %19 = mul nsw i32 %18, %18
+    %20 = and i32 %19, 255
+    %21 = ashr i32 %19, 8
+    %22 = sub nsw i32 %20, %21
+    %23 = sub nsw i32 %20, %21
+    %24 = ashr i32 %23, 31
+    %25 = add nsw i32 %22, %24
+    store volatile i32 %25, i32* %res, align 4
+    br label %35
+  
+  ; <label>:26                                      ; preds = %15
+    %27 = sub nsw i32 257, %4
+    %28 = mul nsw i32 %3, %4
+    %29 = and i32 %28, 255
+    %30 = ashr i32 %28, 8
+    %31 = sub nsw i32 %29, %30
+    %32 = sub nsw i32 %29, %30
+    %33 = ashr i32 %32, 31
+    %34 = add nsw i32 %31, %33
+    store volatile i32 %27, i32* %res, align 4
+    br label %35
+  
+  ; <label>:35                                      ; preds = %17, %26, %6
+    %.1 = phi i32 [ %7, %6 ], [ %18, %17 ], [ %34, %26 ]
+    %36 = and i32 %.1, 255
+    ret i32 %36
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            mulmod8_enter
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+  - { id: 14, class: tgpr }
+  - { id: 15, class: tgpr }
+  - { id: 16, class: tgpr }
+  - { id: 17, class: tgpr }
+  - { id: 18, class: tgpr }
+  - { id: 19, class: tgpr }
+  - { id: 20, class: tgpr }
+  - { id: 21, class: tgpr }
+  - { id: 22, class: tgpr }
+  - { id: 23, class: tgpr }
+  - { id: 24, class: tgpr }
+  - { id: 25, class: tgpr }
+  - { id: 26, class: tgpr }
+  - { id: 27, class: tgpr }
+  - { id: 28, class: tgpr }
+  - { id: 29, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%6' }
+  - { reg: '%r1', virtual-reg: '%7' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+stack:           
+  - { id: 0, name: res, offset: 0, size: 4, alignment: 4, local-offset: -4 }
+constants:       
+  - id:              0
+    value:           i32 257
+    alignment:       4
+body:             |
+  bb.0 (%ir-block.0, freq 34):
+    successors: %bb.1(37), %bb.2(62)
+    liveins: %r0, %r1
+  
+    %7 = COPY %r1
+    %6 = COPY %r0
+    %1 = tUXTB %7, 14, _
+    %0 = tUXTB %6, 14, _
+    tCMPi8 %0, 0, 14, _, implicit-def %cpsr
+    tBcc %bb.2, 1, %cpsr
+    tB %bb.1, 14, _
+  
+  bb.1 (%ir-block.6, freq 12):
+    successors: %bb.5(100)
+  
+    %22 = tLDRpci %const.0, 14, _, <0x3d2b880> = !{!"unison-memory-partition", i32 0}
+    %2, %cpsr = tSUBrr killed %22, %1, 14, _
+    %23, %cpsr = tMUL %2, %1, 14, _
+    %24, %cpsr = tLSRri %23, 8, 14, _
+    %25 = tUXTB %23, 14, _
+    %26, %cpsr = tSUBrr killed %25, killed %24, 14, _
+    %27, %cpsr = tASRri %26, 31, 14, _
+    %28, %cpsr = tADDrr %26, killed %27, 14, _
+    tSTRspi killed %28, %stack.0.res, 0, 14, _, <0x3d2b880> = !{!"unison-memory-partition", i32 0} :: (volatile store 4 into %ir.res)
+    tB %bb.5, 14, _
+  
+  bb.2 (%ir-block.15, freq 21):
+    successors: %bb.3(37), %bb.4(62)
+  
+    tCMPi8 %1, 0, 14, _, implicit-def %cpsr
+    tBcc %bb.4, 1, %cpsr
+    tB %bb.3, 14, _
+  
+  bb.3 (%ir-block.17, freq 8):
+    successors: %bb.5(100)
+  
+    %15 = tLDRpci %const.0, 14, _, <0x3d2b880> = !{!"unison-memory-partition", i32 0}
+    %3, %cpsr = tSUBrr killed %15, %0, 14, _
+    %16, %cpsr = tMUL %3, %3, 14, _
+    %17, %cpsr = tLSRri %16, 8, 14, _
+    %18 = tUXTB %16, 14, _
+    %19, %cpsr = tSUBrr killed %18, killed %17, 14, _
+    %20, %cpsr = tASRri %19, 31, 14, _
+    %21, %cpsr = tADDrr %19, killed %20, 14, _
+    tSTRspi killed %21, %stack.0.res, 0, 14, _, <0x3d2b880> = !{!"unison-memory-partition", i32 0} :: (volatile store 4 into %ir.res)
+    tB %bb.5, 14, _
+  
+  bb.4 (%ir-block.26, freq 13):
+    successors: %bb.5(100)
+  
+    %8 = tLDRpci %const.0, 14, _, <0x3d2b880> = !{!"unison-memory-partition", i32 0}
+    %9, %cpsr = tSUBrr killed %8, %1, 14, _
+    tSTRspi killed %9, %stack.0.res, 0, 14, _, <0x3d2b880> = !{!"unison-memory-partition", i32 0} :: (volatile store 4 into %ir.res)
+    %10, %cpsr = tMUL %0, %1, 14, _
+    %11, %cpsr = tLSRri %10, 8, 14, _
+    %12 = tUXTB %10, 14, _
+    %13, %cpsr = tSUBrr killed %12, killed %11, 14, _
+    %14, %cpsr = tASRri %13, 31, 14, _
+    %4, %cpsr = tADDrr %13, killed %14, 14, _
+  
+  bb.5 (%ir-block.35, freq 34):
+    liveouts: %r0
+  
+    %5 = PHI %4, %bb.4, %3, %bb.3, %2, %bb.1
+    %29 = tUXTB %5, 14, _
+    %r0 = COPY %29
+    tBX_RET 14, _, implicit %r0
+
+...

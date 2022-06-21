@@ -1,0 +1,6 @@
+Secret a0;
+Public a1;
+Random a2;
+Random a3;
+Random F0
+

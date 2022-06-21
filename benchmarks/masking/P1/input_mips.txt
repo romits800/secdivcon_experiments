@@ -1,0 +1,4 @@
+Random a0;
+Random a1;
+Secret a2;
+Secret a3

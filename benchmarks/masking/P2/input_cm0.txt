@@ -1,0 +1,3 @@
+Random r0;
+Random r1;
+Secret r2

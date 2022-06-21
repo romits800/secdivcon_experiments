@@ -1,0 +1,108 @@
+--- |
+  ; ModuleID = 'SecMultLinear_wires_1_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @_Z7SecMultiiiii(i32 signext %a, i32 signext %b, i32 signext %a0, i32 signext %r0_01, i32 signext %p0_01) #0 {
+    %1 = xor i32 %a, %a0
+    %2 = mul nsw i32 %a0, %p0_01
+    %3 = xor i32 %r0_01, %2
+    %4 = mul nsw i32 %p0_01, %a0
+    %5 = xor i32 %3, %4
+    %6 = xor i32 %1, %p0_01
+    %7 = mul nsw i32 %a0, %6
+    %8 = xor i32 %5, %7
+    %9 = xor i32 %1, %p0_01
+    %10 = mul nsw i32 %9, %a0
+    %11 = xor i32 %8, %10
+    %12 = mul nsw i32 %a0, %a0
+    %13 = xor i32 %12, %r0_01
+    %14 = mul nsw i32 %1, %1
+    %15 = xor i32 %14, %11
+    %16 = xor i32 %13, %15
+    ret i32 %16
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            _Z7SecMultiiiii
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+  - { id: 16, class: gpr32 }
+  - { id: 17, class: gpr32 }
+  - { id: 18, class: gpr32 }
+  - { id: 19, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%0' }
+  - { reg: '%a2', virtual-reg: '%2' }
+  - { reg: '%a3', virtual-reg: '%3' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+fixedStack:      
+  - { id: 0, offset: 16, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %a0, %a2, %a3
+    liveouts: %v0
+  
+    %3 = COPY %a3
+    %2 = COPY %a2
+    %0 = COPY %a0
+    %4 = XOR %0, %2
+    %5 = LW %fixed-stack.0, 0, <0x41a28e0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %6 = XOR %4, %5
+    %7 = MUL %4, %4, implicit-def dead %hi0, implicit-def dead %lo0
+    %8 = MUL %6, %2, implicit-def dead %hi0, implicit-def dead %lo0
+    %10 = MUL %5, %2, implicit-def dead %hi0, implicit-def dead %lo0
+    %12 = MUL %2, %2, implicit-def dead %hi0, implicit-def dead %lo0
+    %13 = XOR %3, %10
+    %14 = XOR killed %13, %10
+    %15 = XOR killed %14, %8
+    %16 = XOR killed %15, %8
+    %17 = XOR killed %12, %3
+    %18 = XOR killed %7, killed %16
+    %19 = XOR killed %17, killed %18
+    %v0 = COPY %19
+    RetRA implicit %v0
+
+...

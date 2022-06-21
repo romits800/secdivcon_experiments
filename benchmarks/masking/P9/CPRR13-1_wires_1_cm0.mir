@@ -1,0 +1,210 @@
+--- |
+  ; ModuleID = 'CPRR13-1_wires_1_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc i32 @_Z12CPRR13_wiresjjjjjjjjj(i32 %x, i32 %x0, i32 %r1_01, i32 %p1_01, i32 %r2_01, i32 %p2_01, i32 %r3_01, i32 %r4_01, i32 %Ox51) #0 {
+    %1 = xor i32 %x, %x0
+    %2 = mul i32 %x0, %p1_01
+    %3 = xor i32 %r1_01, %2
+    %4 = mul i32 %p1_01, %x0
+    %5 = xor i32 %3, %4
+    %6 = xor i32 %1, %p1_01
+    %7 = mul i32 %x0, %6
+    %8 = xor i32 %5, %7
+    %9 = xor i32 %1, %p1_01
+    %10 = mul i32 %9, %x0
+    %11 = xor i32 %8, %10
+    %12 = mul i32 %x0, %x0
+    %13 = xor i32 %12, %r1_01
+    %14 = mul i32 %1, %1
+    %15 = xor i32 %14, %11
+    %16 = mul i32 %13, %p2_01
+    %17 = xor i32 %r2_01, %16
+    %18 = mul i32 %p2_01, %13
+    %19 = xor i32 %17, %18
+    %20 = xor i32 %15, %p2_01
+    %21 = mul i32 %13, %20
+    %22 = xor i32 %19, %21
+    %23 = xor i32 %15, %p2_01
+    %24 = mul i32 %23, %13
+    %25 = xor i32 %22, %24
+    %26 = mul i32 %13, %13
+    %27 = xor i32 %26, %r2_01
+    %28 = mul i32 %15, %15
+    %29 = xor i32 %28, %25
+    %30 = mul i32 %27, %15
+    %31 = xor i32 %r3_01, %30
+    %32 = mul i32 %29, %13
+    %33 = xor i32 %31, %32
+    %34 = mul i32 %27, %13
+    %35 = xor i32 %34, %r3_01
+    %36 = mul i32 %29, %15
+    %37 = xor i32 %36, %33
+    %38 = mul i32 %35, %1
+    %39 = xor i32 %r4_01, %38
+    %40 = mul i32 %37, %x0
+    %41 = xor i32 %39, %40
+    %42 = mul i32 %35, %x0
+    %43 = xor i32 %42, %r4_01
+    %44 = mul i32 %37, %1
+    %45 = xor i32 %44, %41
+    %46 = xor i32 %43, %Ox51
+    %47 = xor i32 %46, %45
+    ret i32 %47
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            _Z12CPRR13_wiresjjjjjjjjj
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+  - { id: 14, class: tgpr }
+  - { id: 15, class: tgpr }
+  - { id: 16, class: tgpr }
+  - { id: 17, class: tgpr }
+  - { id: 18, class: tgpr }
+  - { id: 19, class: tgpr }
+  - { id: 20, class: tgpr }
+  - { id: 21, class: tgpr }
+  - { id: 22, class: tgpr }
+  - { id: 23, class: tgpr }
+  - { id: 24, class: tgpr }
+  - { id: 25, class: tgpr }
+  - { id: 26, class: tgpr }
+  - { id: 27, class: tgpr }
+  - { id: 28, class: tgpr }
+  - { id: 29, class: tgpr }
+  - { id: 30, class: tgpr }
+  - { id: 31, class: tgpr }
+  - { id: 32, class: tgpr }
+  - { id: 33, class: tgpr }
+  - { id: 34, class: tgpr }
+  - { id: 35, class: tgpr }
+  - { id: 36, class: tgpr }
+  - { id: 37, class: tgpr }
+  - { id: 38, class: tgpr }
+  - { id: 39, class: tgpr }
+  - { id: 40, class: tgpr }
+  - { id: 41, class: tgpr }
+  - { id: 42, class: tgpr }
+  - { id: 43, class: tgpr }
+  - { id: 44, class: tgpr }
+  - { id: 45, class: tgpr }
+  - { id: 46, class: tgpr }
+  - { id: 47, class: tgpr }
+  - { id: 48, class: tgpr }
+  - { id: 49, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%0' }
+  - { reg: '%r1', virtual-reg: '%1' }
+  - { reg: '%r2', virtual-reg: '%2' }
+  - { reg: '%r3', virtual-reg: '%3' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+fixedStack:      
+  - { id: 0, offset: 16, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 1, offset: 12, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 2, offset: 8, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 3, offset: 4, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 4, offset: 0, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %r0, %r1, %r2, %r3
+    liveouts: %r0
+  
+    %3 = COPY %r3
+    %2 = COPY %r2
+    %1 = COPY %r1
+    %0 = COPY %r0
+    %4, %cpsr = tMUL %1, %1, 14, _
+    %5, %cpsr = tEOR %4, %2, 14, _
+    %6 = tLDRspi %fixed-stack.3, 0, 14, _, <0x4a40660> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %7, %cpsr = tMUL %5, %6, 14, _
+    %8 = tLDRspi %fixed-stack.4, 0, 14, _, <0x4a405f0> = !{!"unison-memory-partition", i32 1} :: (load 4 from stack, align 8)
+    %9, %cpsr = tEOR %8, %7, 14, _
+    %10, %cpsr = tEOR %9, %7, 14, _
+    %11, %cpsr = tMUL %1, %3, 14, _
+    %12, %cpsr = tEOR %2, %11, 14, _
+    %13, %cpsr = tEOR %12, %11, 14, _
+    %14, %cpsr = tEOR %0, %1, 14, _
+    %15, %cpsr = tEOR %14, %3, 14, _
+    %16, %cpsr = tMUL %1, %15, 14, _
+    %17, %cpsr = tEOR %13, %16, 14, _
+    %18, %cpsr = tEOR %17, %16, 14, _
+    %19, %cpsr = tMUL %14, %14, 14, _
+    %20, %cpsr = tEOR %19, killed %18, 14, _
+    %21, %cpsr = tEOR %20, %6, 14, _
+    %22, %cpsr = tMUL %5, %21, 14, _
+    %23, %cpsr = tEOR %10, %22, 14, _
+    %24, %cpsr = tEOR %23, %22, 14, _
+    %25, %cpsr = tMUL %20, %20, 14, _
+    %26, %cpsr = tEOR %25, killed %24, 14, _
+    %27, %cpsr = tMUL %26, %20, 14, _
+    %28, %cpsr = tMUL %26, %5, 14, _
+    %29, %cpsr = tMUL %5, %5, 14, _
+    %30, %cpsr = tEOR %29, %8, 14, _
+    %31, %cpsr = tMUL %30, %20, 14, _
+    %32 = tLDRspi %fixed-stack.2, 0, 14, _, <0x4a33980> = !{!"unison-memory-partition", i32 2} :: (load 4 from stack, align 8)
+    %33, %cpsr = tEOR %32, killed %31, 14, _
+    %34, %cpsr = tEOR %33, killed %28, 14, _
+    %35, %cpsr = tEOR %27, killed %34, 14, _
+    %36, %cpsr = tMUL %35, %14, 14, _
+    %37, %cpsr = tMUL %35, %1, 14, _
+    %38, %cpsr = tMUL %30, %5, 14, _
+    %39, %cpsr = tEOR %38, %32, 14, _
+    %40, %cpsr = tMUL %39, %14, 14, _
+    %41 = tLDRspi %fixed-stack.1, 0, 14, _, <0x4a339b0> = !{!"unison-memory-partition", i32 3} :: (load 4 from stack)
+    %42, %cpsr = tEOR %41, killed %40, 14, _
+    %43, %cpsr = tEOR %42, killed %37, 14, _
+    %44, %cpsr = tEOR %36, killed %43, 14, _
+    %45, %cpsr = tMUL %39, %1, 14, _
+    %46, %cpsr = tEOR %45, %41, 14, _
+    %47 = tLDRspi %fixed-stack.0, 0, 14, _, <0x4a34160> = !{!"unison-memory-partition", i32 4} :: (load 4 from stack, align 8)
+    %48, %cpsr = tEOR %46, killed %47, 14, _
+    %49, %cpsr = tEOR %48, killed %44, 14, _
+    %r0 = COPY %49
+    tBX_RET 14, _, implicit %r0
+
+...

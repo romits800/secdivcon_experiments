@@ -1,6 +1,7 @@
 #include "kruskal.h"
 
 //static 
+/*
 int find(int x, int par[]) 
 {
   int result = x; 
@@ -12,6 +13,28 @@ int find(int x, int par[])
   }
   return result;
 }
+*/
+
+int find(int x, int par[], int len) 
+{
+  int result = x; 
+  int x2;
+  int result2 = -1;
+  volatile int res;
+  for (int i = 0; i < len; i++) {
+    if (par[x] == x) {
+        result = x;
+        x2 = par[x];
+        res = x2;
+    } else {
+        result2 = x;
+        x = par[x];
+        res = result2;
+    }
+  }
+  return result;
+}
+
 
 void
 kruskal_enter(__attribute__((secret)) int g[], int mst[], int par[], int len)
@@ -24,23 +47,16 @@ kruskal_enter(__attribute__((secret)) int g[], int mst[], int par[], int len)
 
   int idx = 0;
 
-  int idx2 = 0;
-  int mst2[len];
-  int par2[len];
-
   for (int i=1; i < len; i += 2)
   {
-    int src = find(g[i], par);
-    int tgt = find(g[i + 1], par);
+    int src = find(g[i], par, len);
+    int tgt = find(g[i + 1], par, len);
 
-    if (src != tgt) {
+    if (src != tgt)
+    {
       mst[++idx] = src;
       mst[++idx] = tgt;
       par[src] = tgt;
-    } else {
-      mst2[++idx2] = src;
-      mst2[++idx2] = tgt;
-      par2[src] = tgt;
     }
   }
 
