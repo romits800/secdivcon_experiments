@@ -12,7 +12,7 @@ $ cd secdivcon/src
 and compile the code:
 
 ```bash
-$ make -j 12 && sudo make install
+$ make -j 12
 ```
 
 ## Run the experiments
