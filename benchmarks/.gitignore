@@ -1,0 +1,7 @@
+*.uni
+*.fzn
+out*
+*.bak
+*.last
+*.unison.mir
+*.json

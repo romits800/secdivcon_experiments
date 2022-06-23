@@ -1,0 +1,14 @@
+error in SecTypeInf in MIPS:
+```
+uni: SecTypeInf: Operation with unknown operands: Len ins:1 Len oups:0 Len defops:0 Use Operands: 
+Def Operands: 
+Instructions:  LoadGPDisp
+```
+Fixed that, now:
+Infinite loop?
+
+Done
+
+CM0: error: sharevalue_cm0.unison.mir:81:13: unknown machine instruction name 'tCMPr_cpsr' - Done
+MIPS: missing declaration in mir - Done
+

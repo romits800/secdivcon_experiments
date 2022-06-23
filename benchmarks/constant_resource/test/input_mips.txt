@@ -1,0 +1,2 @@
+Secret a0;
+Public a1
