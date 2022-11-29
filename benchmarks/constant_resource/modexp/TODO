@@ -1,5 +1,0 @@
-CM0: wrong blocks, if should bbs= [(4,6)] - solved
-MIPS: pseudo instruction in the .unison.mir - solved
-CM0: llc: modexp_cm0.unison.mir:100:13: unknown machine instruction name 'tTST_cpsr' - solved
-CM0: wrong stack push instructions (move to LDMIA instead of T2LDMIA) - Not sure if necessary...
-CM0: the problem is the nops following a RET instruction - solved

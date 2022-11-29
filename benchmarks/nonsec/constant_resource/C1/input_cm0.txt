@@ -1,0 +1,5 @@
+secMem [r0];
+Secret r0;
+pubMem [r1];
+Public r1;
+Public r2

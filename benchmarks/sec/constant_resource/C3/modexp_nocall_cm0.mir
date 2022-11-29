@@ -1,0 +1,167 @@
+--- |
+  ; ModuleID = 'modexp_nocall_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc i32 @modexp_enter(i32 %base, i32 %exp, i32 %mod) #0 {
+    %1 = icmp ne i32 %mod, 1
+    br i1 %1, label %2, label %16
+  
+  ; <label>:2                                       ; preds = %0
+    %3 = add nsw i32 %base, %mod
+    br label %4
+  
+  ; <label>:4                                       ; preds = %12, %2
+    %lsr.iv = phi i32 [ -1, %2 ], [ %lsr.iv.next, %12 ]
+    %result.0 = phi i32 [ 1, %2 ], [ %result.1, %12 ]
+    %.01 = phi i32 [ %exp, %2 ], [ %13, %12 ]
+    %.0 = phi i32 [ %3, %2 ], [ %15, %12 ]
+    %lsr.iv.next = add nsw i32 %lsr.iv, 1
+    %5 = icmp ult i32 %lsr.iv.next, 32
+    br i1 %5, label %6, label %16
+  
+  ; <label>:6                                       ; preds = %4
+    %7 = and i32 %.01, 1
+    %8 = icmp eq i32 %7, 1
+    br i1 %8, label %9, label %12
+  
+  ; <label>:9                                       ; preds = %6
+    %10 = mul nsw i32 %result.0, %.0
+    %11 = add nsw i32 %10, %mod
+    br label %12
+  
+  ; <label>:12                                      ; preds = %9, %6
+    %result.1 = phi i32 [ %11, %9 ], [ %result.0, %6 ]
+    %13 = ashr i32 %.01, 1
+    %14 = mul nsw i32 %.0, %.0
+    %15 = add nsw i32 %14, %mod
+    br label %4
+  
+  ; <label>:16                                      ; preds = %4, %0
+    %result.2 = phi i32 [ 0, %0 ], [ %result.0, %4 ]
+    ret i32 %result.2
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            modexp_enter
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+  - { id: 14, class: tgpr }
+  - { id: 15, class: tgpr }
+  - { id: 16, class: tgpr }
+  - { id: 17, class: tgpr }
+  - { id: 18, class: tgpr }
+  - { id: 19, class: tgpr }
+  - { id: 20, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%11' }
+  - { reg: '%r1', virtual-reg: '%12' }
+  - { reg: '%r2', virtual-reg: '%13' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    0
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 16):
+    successors: %bb.1(50), %bb.6(50)
+    liveins: %r0, %r1, %r2
+  
+    %13 = COPY %r2
+    %12 = COPY %r1
+    %11 = COPY %r0
+    %14, %cpsr = tMOVi8 0, 14, _
+    tCMPi8 %13, 1, 14, _, implicit-def %cpsr
+    tBcc %bb.6, 0, %cpsr
+    tB %bb.1, 14, _
+  
+  bb.1 (%ir-block.2, freq 8):
+    successors: %bb.2(100)
+  
+    %0, %cpsr = tADDrr %11, %13, 14, _
+    %17, %cpsr = tMOVi8 0, 14, _
+    %15, %cpsr = tMVN killed %17, 14, _
+    %16, %cpsr = tMOVi8 1, 14, _
+  
+  bb.2 (%ir-block.4, freq 256):
+    successors: %bb.3(96), %bb.6(3)
+  
+    %1 = PHI %15, %bb.1, %5, %bb.5
+    %2 = PHI %16, %bb.1, %7, %bb.5
+    %3 = PHI %12, %bb.1, %8, %bb.5
+    %4 = PHI %0, %bb.1, %9, %bb.5
+    %5, %cpsr = tADDi3 %1, 1, 14, _
+    tCMPi8 %5, 31, 14, _, implicit-def %cpsr
+    tBcc %bb.6, 8, %cpsr
+    tB %bb.3, 14, _
+  
+  bb.3 (%ir-block.6, freq 248):
+    successors: %bb.4(50), %bb.5(50)
+  
+    %18, %cpsr = tMOVi8 1, 14, _
+    tTST %3, killed %18, 14, _, implicit-def %cpsr
+    tBcc %bb.5, 0, %cpsr
+    tB %bb.4, 14, _
+  
+  bb.4 (%ir-block.9, freq 124):
+    successors: %bb.5(100)
+  
+    %19, %cpsr = tMUL %2, %4, 14, _
+    %6, %cpsr = tADDrr killed %19, %13, 14, _
+  
+  bb.5 (%ir-block.12, freq 248):
+    successors: %bb.2(100)
+  
+    %7 = PHI %2, %bb.3, %6, %bb.4
+    %20, %cpsr = tMUL %4, %4, 14, _
+    %9, %cpsr = tADDrr killed %20, %13, 14, _
+    %8, %cpsr = tASRri %3, 1, 14, _
+    tB %bb.2, 14, _
+  
+  bb.6 (%ir-block.16, freq 16):
+    liveouts: %r0
+  
+    %10 = PHI %14, %bb.0, %2, %bb.2
+    %r0 = COPY %10
+    tBX_RET 14, _, implicit %r0
+
+...

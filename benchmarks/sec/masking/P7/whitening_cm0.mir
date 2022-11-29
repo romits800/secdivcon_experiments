@@ -1,0 +1,454 @@
+--- |
+  ; ModuleID = 'whitening_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc void @whitening(i8 zeroext %key0, i8 zeroext %key1, i8 zeroext %key2, i8 zeroext %key3, i8 zeroext %key4, i8 zeroext %key5, i8 zeroext %key6, i8 zeroext %key7, i8 zeroext %key8, i8 zeroext %key9, i8 zeroext %key10, i8 zeroext %key11, i8 zeroext %key12, i8 zeroext %key13, i8 zeroext %key14, i8 zeroext %key15, i8 zeroext %pt0, i8 zeroext %pt1, i8 zeroext %pt2, i8 zeroext %pt3, i8 zeroext %pt4, i8 zeroext %pt5, i8 zeroext %pt6, i8 zeroext %pt7, i8 zeroext %pt8, i8 zeroext %pt9, i8 zeroext %pt10, i8 zeroext %pt11, i8 zeroext %pt12, i8 zeroext %pt13, i8 zeroext %pt14, i8 zeroext %pt15, i8 zeroext %mask0, i8 zeroext %mask1, i8 zeroext %mask2, i8 zeroext %mask3, i8 zeroext %mask4, i8 zeroext %mask5, i8 zeroext %mask6, i8 zeroext %mask7, i8 zeroext %mask8, i8 zeroext %mask9, i8 zeroext %mask10, i8 zeroext %mask11, i8 zeroext %mask12, i8 zeroext %mask13, i8 zeroext %mask14, i8 zeroext %mask15) #0 {
+    %st0 = alloca i8, align 1
+    %st1 = alloca i8, align 1
+    %st2 = alloca i8, align 1
+    %st3 = alloca i8, align 1
+    %st4 = alloca i8, align 1
+    %st5 = alloca i8, align 1
+    %st6 = alloca i8, align 1
+    %st7 = alloca i8, align 1
+    %st8 = alloca i8, align 1
+    %st9 = alloca i8, align 1
+    %st10 = alloca i8, align 1
+    %st11 = alloca i8, align 1
+    %st12 = alloca i8, align 1
+    %st13 = alloca i8, align 1
+    %st14 = alloca i8, align 1
+    %st15 = alloca i8, align 1
+    %1 = zext i8 %pt0 to i32
+    %2 = zext i8 %key0 to i32
+    %3 = zext i8 %mask0 to i32
+    %4 = xor i32 %2, %3
+    %5 = xor i32 %1, %4
+    %6 = trunc i32 %5 to i8
+    store volatile i8 %6, i8* %st0, align 1
+    %7 = zext i8 %pt1 to i32
+    %8 = zext i8 %key1 to i32
+    %9 = zext i8 %mask1 to i32
+    %10 = xor i32 %8, %9
+    %11 = xor i32 %7, %10
+    %12 = trunc i32 %11 to i8
+    store volatile i8 %12, i8* %st1, align 1
+    %13 = zext i8 %pt2 to i32
+    %14 = zext i8 %key2 to i32
+    %15 = zext i8 %mask2 to i32
+    %16 = xor i32 %14, %15
+    %17 = xor i32 %13, %16
+    %18 = trunc i32 %17 to i8
+    store volatile i8 %18, i8* %st2, align 1
+    %19 = zext i8 %pt3 to i32
+    %20 = zext i8 %key3 to i32
+    %21 = zext i8 %mask3 to i32
+    %22 = xor i32 %20, %21
+    %23 = xor i32 %19, %22
+    %24 = trunc i32 %23 to i8
+    store volatile i8 %24, i8* %st3, align 1
+    %25 = zext i8 %pt4 to i32
+    %26 = zext i8 %key4 to i32
+    %27 = zext i8 %mask4 to i32
+    %28 = xor i32 %26, %27
+    %29 = xor i32 %25, %28
+    %30 = trunc i32 %29 to i8
+    store volatile i8 %30, i8* %st4, align 1
+    %31 = zext i8 %pt5 to i32
+    %32 = zext i8 %key5 to i32
+    %33 = zext i8 %mask5 to i32
+    %34 = xor i32 %32, %33
+    %35 = xor i32 %31, %34
+    %36 = trunc i32 %35 to i8
+    store volatile i8 %36, i8* %st5, align 1
+    %37 = zext i8 %pt6 to i32
+    %38 = zext i8 %key6 to i32
+    %39 = zext i8 %mask6 to i32
+    %40 = xor i32 %38, %39
+    %41 = xor i32 %37, %40
+    %42 = trunc i32 %41 to i8
+    store volatile i8 %42, i8* %st6, align 1
+    %43 = zext i8 %pt7 to i32
+    %44 = zext i8 %key7 to i32
+    %45 = zext i8 %mask7 to i32
+    %46 = xor i32 %44, %45
+    %47 = xor i32 %43, %46
+    %48 = trunc i32 %47 to i8
+    store volatile i8 %48, i8* %st7, align 1
+    %49 = zext i8 %pt8 to i32
+    %50 = zext i8 %key8 to i32
+    %51 = zext i8 %mask8 to i32
+    %52 = xor i32 %50, %51
+    %53 = xor i32 %49, %52
+    %54 = trunc i32 %53 to i8
+    store volatile i8 %54, i8* %st8, align 1
+    %55 = zext i8 %pt9 to i32
+    %56 = zext i8 %key9 to i32
+    %57 = zext i8 %mask9 to i32
+    %58 = xor i32 %56, %57
+    %59 = xor i32 %55, %58
+    %60 = trunc i32 %59 to i8
+    store volatile i8 %60, i8* %st9, align 1
+    %61 = zext i8 %pt10 to i32
+    %62 = zext i8 %key10 to i32
+    %63 = zext i8 %mask10 to i32
+    %64 = xor i32 %62, %63
+    %65 = xor i32 %61, %64
+    %66 = trunc i32 %65 to i8
+    store volatile i8 %66, i8* %st10, align 1
+    %67 = zext i8 %pt11 to i32
+    %68 = zext i8 %key11 to i32
+    %69 = zext i8 %mask11 to i32
+    %70 = xor i32 %68, %69
+    %71 = xor i32 %67, %70
+    %72 = trunc i32 %71 to i8
+    store volatile i8 %72, i8* %st11, align 1
+    %73 = zext i8 %pt12 to i32
+    %74 = zext i8 %key12 to i32
+    %75 = zext i8 %mask12 to i32
+    %76 = xor i32 %74, %75
+    %77 = xor i32 %73, %76
+    %78 = trunc i32 %77 to i8
+    store volatile i8 %78, i8* %st12, align 1
+    %79 = zext i8 %pt13 to i32
+    %80 = zext i8 %key13 to i32
+    %81 = zext i8 %mask13 to i32
+    %82 = xor i32 %80, %81
+    %83 = xor i32 %79, %82
+    %84 = trunc i32 %83 to i8
+    store volatile i8 %84, i8* %st13, align 1
+    %85 = zext i8 %pt14 to i32
+    %86 = zext i8 %key14 to i32
+    %87 = zext i8 %mask14 to i32
+    %88 = xor i32 %86, %87
+    %89 = xor i32 %85, %88
+    %90 = trunc i32 %89 to i8
+    store volatile i8 %90, i8* %st14, align 1
+    %91 = zext i8 %pt15 to i32
+    %92 = zext i8 %key15 to i32
+    %93 = zext i8 %mask15 to i32
+    %94 = xor i32 %92, %93
+    %95 = xor i32 %91, %94
+    %96 = trunc i32 %95 to i8
+    store volatile i8 %96, i8* %st15, align 1
+    ret void
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            whitening
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+  - { id: 14, class: tgpr }
+  - { id: 15, class: tgpr }
+  - { id: 16, class: tgpr }
+  - { id: 17, class: tgpr }
+  - { id: 18, class: tgpr }
+  - { id: 19, class: tgpr }
+  - { id: 20, class: tgpr }
+  - { id: 21, class: tgpr }
+  - { id: 22, class: tgpr }
+  - { id: 23, class: tgpr }
+  - { id: 24, class: tgpr }
+  - { id: 25, class: tgpr }
+  - { id: 26, class: tgpr }
+  - { id: 27, class: tgpr }
+  - { id: 28, class: tgpr }
+  - { id: 29, class: tgpr }
+  - { id: 30, class: tgpr }
+  - { id: 31, class: tgpr }
+  - { id: 32, class: tgpr }
+  - { id: 33, class: tgpr }
+  - { id: 34, class: tgpr }
+  - { id: 35, class: tgpr }
+  - { id: 36, class: tgpr }
+  - { id: 37, class: tgpr }
+  - { id: 38, class: tgpr }
+  - { id: 39, class: tgpr }
+  - { id: 40, class: tgpr }
+  - { id: 41, class: tgpr }
+  - { id: 42, class: tgpr }
+  - { id: 43, class: tgpr }
+  - { id: 44, class: tgpr }
+  - { id: 45, class: tgpr }
+  - { id: 46, class: tgpr }
+  - { id: 47, class: tgpr }
+  - { id: 48, class: tgpr }
+  - { id: 49, class: tgpr }
+  - { id: 50, class: tgpr }
+  - { id: 51, class: tgpr }
+  - { id: 52, class: tgpr }
+  - { id: 53, class: tgpr }
+  - { id: 54, class: tgpr }
+  - { id: 55, class: tgpr }
+  - { id: 56, class: tgpr }
+  - { id: 57, class: tgpr }
+  - { id: 58, class: tgpr }
+  - { id: 59, class: tgpr }
+  - { id: 60, class: tgpr }
+  - { id: 61, class: tgpr }
+  - { id: 62, class: tgpr }
+  - { id: 63, class: tgpr }
+  - { id: 64, class: tgpr }
+  - { id: 65, class: tgpr }
+  - { id: 66, class: tgpr }
+  - { id: 67, class: tgpr }
+  - { id: 68, class: tgpr }
+  - { id: 69, class: tgpr }
+  - { id: 70, class: tgpr }
+  - { id: 71, class: tgpr }
+  - { id: 72, class: tgpr }
+  - { id: 73, class: tgpr }
+  - { id: 74, class: tgpr }
+  - { id: 75, class: tgpr }
+  - { id: 76, class: tgpr }
+  - { id: 77, class: tgpr }
+  - { id: 78, class: tgpr }
+  - { id: 79, class: tgpr }
+  - { id: 80, class: tgpr }
+  - { id: 81, class: tgpr }
+  - { id: 82, class: tgpr }
+  - { id: 83, class: tgpr }
+  - { id: 84, class: tgpr }
+  - { id: 85, class: tgpr }
+  - { id: 86, class: tgpr }
+  - { id: 87, class: tgpr }
+  - { id: 88, class: tgpr }
+  - { id: 89, class: tgpr }
+  - { id: 90, class: tgpr }
+  - { id: 91, class: tgpr }
+  - { id: 92, class: tgpr }
+  - { id: 93, class: tgpr }
+  - { id: 94, class: tgpr }
+  - { id: 95, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%0' }
+  - { reg: '%r1', virtual-reg: '%1' }
+  - { reg: '%r2', virtual-reg: '%2' }
+  - { reg: '%r3', virtual-reg: '%3' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+fixedStack:      
+  - { id: 0, offset: 172, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 1, offset: 168, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 2, offset: 164, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 3, offset: 160, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 4, offset: 156, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 5, offset: 152, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 6, offset: 148, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 7, offset: 144, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 8, offset: 140, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 9, offset: 136, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 10, offset: 132, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 11, offset: 128, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 12, offset: 124, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 13, offset: 120, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 14, offset: 116, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 15, offset: 112, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 16, offset: 108, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 17, offset: 104, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 18, offset: 100, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 19, offset: 96, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 20, offset: 92, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 21, offset: 88, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 22, offset: 84, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 23, offset: 80, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 24, offset: 76, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 25, offset: 72, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 26, offset: 68, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 27, offset: 64, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 28, offset: 60, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 29, offset: 56, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 30, offset: 52, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 31, offset: 48, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 32, offset: 44, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 33, offset: 40, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 34, offset: 36, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 35, offset: 32, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 36, offset: 28, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 37, offset: 24, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 38, offset: 20, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 39, offset: 16, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 40, offset: 12, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 41, offset: 8, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 42, offset: 4, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 43, offset: 0, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+stack:           
+  - { id: 0, name: st0, offset: 0, size: 1, alignment: 4, local-offset: -4 }
+  - { id: 1, name: st1, offset: 0, size: 1, alignment: 4, local-offset: -8 }
+  - { id: 2, name: st2, offset: 0, size: 1, alignment: 4, local-offset: -12 }
+  - { id: 3, name: st3, offset: 0, size: 1, alignment: 4, local-offset: -16 }
+  - { id: 4, name: st4, offset: 0, size: 1, alignment: 4, local-offset: -20 }
+  - { id: 5, name: st5, offset: 0, size: 1, alignment: 4, local-offset: -24 }
+  - { id: 6, name: st6, offset: 0, size: 1, alignment: 4, local-offset: -28 }
+  - { id: 7, name: st7, offset: 0, size: 1, alignment: 4, local-offset: -32 }
+  - { id: 8, name: st8, offset: 0, size: 1, alignment: 4, local-offset: -36 }
+  - { id: 9, name: st9, offset: 0, size: 1, alignment: 4, local-offset: -40 }
+  - { id: 10, name: st10, offset: 0, size: 1, alignment: 4, local-offset: -44 }
+  - { id: 11, name: st11, offset: 0, size: 1, alignment: 4, local-offset: -48 }
+  - { id: 12, name: st12, offset: 0, size: 1, alignment: 4, local-offset: -52 }
+  - { id: 13, name: st13, offset: 0, size: 1, alignment: 4, local-offset: -56 }
+  - { id: 14, name: st14, offset: 0, size: 1, alignment: 4, local-offset: -60 }
+  - { id: 15, name: st15, offset: 0, size: 1, alignment: 4, local-offset: -64 }
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %r0, %r1, %r2, %r3
+    liveouts:
+  
+    %3 = COPY %r3
+    %2 = COPY %r2
+    %1 = COPY %r1
+    %0 = COPY %r0
+    %4 = tLDRspi %fixed-stack.15, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %5, %cpsr = tEOR %0, killed %4, 14, _
+    %6 = tLDRspi %fixed-stack.31, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %7, %cpsr = tEOR %6, killed %5, 14, _
+    %8 = tADDframe %stack.0.st0, 0, implicit-def dead %cpsr
+    tSTRBi killed %7, killed %8, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st0)
+    %9 = tLDRspi %fixed-stack.14, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %10, %cpsr = tEOR %1, killed %9, 14, _
+    %11 = tLDRspi %fixed-stack.30, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %12, %cpsr = tEOR %11, killed %10, 14, _
+    %13 = tADDframe %stack.1.st1, 0, implicit-def dead %cpsr
+    tSTRBi killed %12, killed %13, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st1)
+    %14 = tLDRspi %fixed-stack.13, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %15, %cpsr = tEOR %2, killed %14, 14, _
+    %16 = tLDRspi %fixed-stack.29, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %17, %cpsr = tEOR %16, killed %15, 14, _
+    %18 = tADDframe %stack.2.st2, 0, implicit-def dead %cpsr
+    tSTRBi killed %17, killed %18, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st2)
+    %19 = tLDRspi %fixed-stack.12, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %20, %cpsr = tEOR %3, killed %19, 14, _
+    %21 = tLDRspi %fixed-stack.28, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %22, %cpsr = tEOR %21, killed %20, 14, _
+    %23 = tADDframe %stack.3.st3, 0, implicit-def dead %cpsr
+    tSTRBi killed %22, killed %23, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st3)
+    %24 = tLDRspi %fixed-stack.11, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %25 = tLDRspi %fixed-stack.43, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %26, %cpsr = tEOR %25, killed %24, 14, _
+    %27 = tLDRspi %fixed-stack.27, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %28, %cpsr = tEOR %27, killed %26, 14, _
+    %29 = tADDframe %stack.4.st4, 0, implicit-def dead %cpsr
+    tSTRBi killed %28, killed %29, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st4)
+    %30 = tLDRspi %fixed-stack.10, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %31 = tLDRspi %fixed-stack.42, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %32, %cpsr = tEOR %31, killed %30, 14, _
+    %33 = tLDRspi %fixed-stack.26, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %34, %cpsr = tEOR %33, killed %32, 14, _
+    %35 = tADDframe %stack.5.st5, 0, implicit-def dead %cpsr
+    tSTRBi killed %34, killed %35, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st5)
+    %36 = tLDRspi %fixed-stack.9, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %37 = tLDRspi %fixed-stack.41, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %38, %cpsr = tEOR %37, killed %36, 14, _
+    %39 = tLDRspi %fixed-stack.25, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %40, %cpsr = tEOR %39, killed %38, 14, _
+    %41 = tADDframe %stack.6.st6, 0, implicit-def dead %cpsr
+    tSTRBi killed %40, killed %41, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st6)
+    %42 = tLDRspi %fixed-stack.8, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %43 = tLDRspi %fixed-stack.40, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %44, %cpsr = tEOR %43, killed %42, 14, _
+    %45 = tLDRspi %fixed-stack.24, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %46, %cpsr = tEOR %45, killed %44, 14, _
+    %47 = tADDframe %stack.7.st7, 0, implicit-def dead %cpsr
+    tSTRBi killed %46, killed %47, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st7)
+    %48 = tLDRspi %fixed-stack.7, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %49 = tLDRspi %fixed-stack.39, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %50, %cpsr = tEOR %49, killed %48, 14, _
+    %51 = tLDRspi %fixed-stack.23, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %52, %cpsr = tEOR %51, killed %50, 14, _
+    %53 = tADDframe %stack.8.st8, 0, implicit-def dead %cpsr
+    tSTRBi killed %52, killed %53, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st8)
+    %54 = tLDRspi %fixed-stack.6, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %55 = tLDRspi %fixed-stack.38, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %56, %cpsr = tEOR %55, killed %54, 14, _
+    %57 = tLDRspi %fixed-stack.22, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %58, %cpsr = tEOR %57, killed %56, 14, _
+    %59 = tADDframe %stack.9.st9, 0, implicit-def dead %cpsr
+    tSTRBi killed %58, killed %59, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st9)
+    %60 = tLDRspi %fixed-stack.5, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %61 = tLDRspi %fixed-stack.37, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %62, %cpsr = tEOR %61, killed %60, 14, _
+    %63 = tLDRspi %fixed-stack.21, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %64, %cpsr = tEOR %63, killed %62, 14, _
+    %65 = tADDframe %stack.10.st10, 0, implicit-def dead %cpsr
+    tSTRBi killed %64, killed %65, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st10)
+    %66 = tLDRspi %fixed-stack.4, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %67 = tLDRspi %fixed-stack.36, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %68, %cpsr = tEOR %67, killed %66, 14, _
+    %69 = tLDRspi %fixed-stack.20, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %70, %cpsr = tEOR %69, killed %68, 14, _
+    %71 = tADDframe %stack.11.st11, 0, implicit-def dead %cpsr
+    tSTRBi killed %70, killed %71, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st11)
+    %72 = tLDRspi %fixed-stack.3, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %73 = tLDRspi %fixed-stack.35, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %74, %cpsr = tEOR %73, killed %72, 14, _
+    %75 = tLDRspi %fixed-stack.19, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %76, %cpsr = tEOR %75, killed %74, 14, _
+    %77 = tADDframe %stack.12.st12, 0, implicit-def dead %cpsr
+    tSTRBi killed %76, killed %77, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st12)
+    %78 = tLDRspi %fixed-stack.2, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %79 = tLDRspi %fixed-stack.34, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %80, %cpsr = tEOR %79, killed %78, 14, _
+    %81 = tLDRspi %fixed-stack.18, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %82, %cpsr = tEOR %81, killed %80, 14, _
+    %83 = tADDframe %stack.13.st13, 0, implicit-def dead %cpsr
+    tSTRBi killed %82, killed %83, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st13)
+    %84 = tLDRspi %fixed-stack.1, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %85 = tLDRspi %fixed-stack.33, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %86, %cpsr = tEOR %85, killed %84, 14, _
+    %87 = tLDRspi %fixed-stack.17, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %88, %cpsr = tEOR %87, killed %86, 14, _
+    %89 = tADDframe %stack.14.st14, 0, implicit-def dead %cpsr
+    tSTRBi killed %88, killed %89, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st14)
+    %90 = tLDRspi %fixed-stack.0, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %91 = tLDRspi %fixed-stack.32, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %92, %cpsr = tEOR %91, killed %90, 14, _
+    %93 = tLDRspi %fixed-stack.16, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %94, %cpsr = tEOR %93, killed %92, 14, _
+    %95 = tADDframe %stack.15.st15, 0, implicit-def dead %cpsr
+    tSTRBi killed %94, killed %95, 0, 14, _, <0x3ae34b0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st15)
+    tBX_RET 14, _
+
+...

@@ -1,0 +1,159 @@
+--- |
+  ; ModuleID = 'mulmod8_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc i32 @mulmod8_enter(i32 %a, i32 %b) #0 {
+    %1 = and i32 %a, 255
+    %2 = and i32 %b, 255
+    %3 = icmp eq i32 %1, 0
+    br i1 %3, label %4, label %6
+  
+  ; <label>:4                                       ; preds = %0
+    %5 = sub nsw i32 257, %2
+    br label %18
+  
+  ; <label>:6                                       ; preds = %0
+    %7 = icmp eq i32 %2, 0
+    br i1 %7, label %8, label %10
+  
+  ; <label>:8                                       ; preds = %6
+    %9 = sub nsw i32 257, %1
+    br label %18
+  
+  ; <label>:10                                      ; preds = %6
+    %11 = mul nsw i32 %1, %2
+    %12 = and i32 %11, 255
+    %13 = ashr i32 %11, 8
+    %14 = sub nsw i32 %12, %13
+    %15 = icmp slt i32 %12, %13
+    %16 = select i1 %15, i32 1, i32 0
+    %17 = add nsw i32 %14, %16
+    br label %18
+  
+  ; <label>:18                                      ; preds = %8, %10, %4
+    %.1 = phi i32 [ %5, %4 ], [ %9, %8 ], [ %17, %10 ]
+    %19 = and i32 %.1, 255
+    ret i32 %19
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            mulmod8_enter
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+  - { id: 14, class: tgpr }
+  - { id: 15, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%6' }
+  - { reg: '%r1', virtual-reg: '%7' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    0
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+constants:       
+  - id:              0
+    value:           i32 257
+    alignment:       4
+body:             |
+  bb.0 (%ir-block.0, freq 40):
+    successors: %bb.1(37), %bb.2(62)
+    liveins: %r0, %r1
+  
+    %7 = COPY %r1
+    %6 = COPY %r0
+    %1 = tUXTB %7, 14, _
+    %0 = tUXTB %6, 14, _
+    tCMPi8 %0, 0, 14, _, implicit-def %cpsr
+    tBcc %bb.2, 1, %cpsr
+    tB %bb.1, 14, _
+  
+  bb.1 (%ir-block.4, freq 15):
+    successors: %bb.5(100)
+  
+    %14 = tLDRpci %const.0, 14, _, <0x3e03340> = !{!"unison-memory-partition", i32 0}
+    %2, %cpsr = tSUBrr killed %14, %1, 14, _
+    tB %bb.5, 14, _
+  
+  bb.2 (%ir-block.6, freq 25):
+    successors: %bb.3(37), %bb.4(62)
+  
+    tCMPi8 %1, 0, 14, _, implicit-def %cpsr
+    tBcc %bb.4, 1, %cpsr
+    tB %bb.3, 14, _
+  
+  bb.3 (%ir-block.8, freq 9):
+    successors: %bb.5(100)
+  
+    %13 = tLDRpci %const.0, 14, _, <0x3e03340> = !{!"unison-memory-partition", i32 0}
+    %3, %cpsr = tSUBrr killed %13, %0, 14, _
+    tB %bb.5, 14, _
+  
+  bb.4 (%ir-block.10, freq 16):
+    successors: %bb.6(50), %bb.7(50)
+  
+    %8, %cpsr = tMUL %0, %1, 14, _
+    %9, %cpsr = tLSRri %8, 8, 14, _
+    %10 = tUXTB %8, 14, _
+    %11, %cpsr = tSUBrr %10, %9, 14, _
+    %12, %cpsr = tADDi3 %11, 1, 14, _
+    tCMPr %10, %9, 14, _, implicit-def %cpsr
+    tBcc %bb.7, 11, %cpsr
+  
+  bb.6 (%ir-block.10, freq 8):
+    successors: %bb.7(100)
+  
+  
+  bb.7 (%ir-block.10, freq 16):
+    successors: %bb.5(100)
+  
+    %4 = PHI %11, %bb.6, %12, %bb.4
+  
+  bb.5 (%ir-block.18, freq 40):
+    liveouts: %r0
+  
+    %5 = PHI %4, %bb.7, %3, %bb.3, %2, %bb.1
+    %15 = tUXTB %5, 14, _
+    %r0 = COPY %15
+    tBX_RET 14, _, implicit %r0
+
+...

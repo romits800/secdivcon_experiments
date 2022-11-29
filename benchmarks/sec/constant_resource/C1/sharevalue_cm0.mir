@@ -1,0 +1,138 @@
+--- |
+  ; ModuleID = 'sharevalue_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc i32 @sharevalue_enter(i32* %ids, i32* %qty, i32 %len) #0 {
+    br label %1
+  
+  ; <label>:1                                       ; preds = %10, %0
+    %shareVal.0 = phi i32 [ 0, %0 ], [ %shareVal.1, %10 ]
+    %i.0 = phi i32 [ 0, %0 ], [ %11, %10 ]
+    %2 = icmp slt i32 %i.0, %len
+    br i1 %2, label %3, label %12
+  
+  ; <label>:3                                       ; preds = %1
+    %scevgep1 = getelementptr i32, i32* %ids, i32 %i.0
+    %4 = load i32, i32* %scevgep1, align 4
+    %scevgep = getelementptr i32, i32* %qty, i32 %i.0
+    %5 = load i32, i32* %scevgep, align 4
+    %6 = mul nsw i32 7, %5
+    %7 = icmp eq i32 %4, 42
+    br i1 %7, label %8, label %10
+  
+  ; <label>:8                                       ; preds = %3
+    %9 = add nsw i32 %shareVal.0, %6
+    br label %10
+  
+  ; <label>:10                                      ; preds = %8, %3
+    %shareVal.1 = phi i32 [ %9, %8 ], [ %shareVal.0, %3 ]
+    %11 = add nsw i32 %i.0, 1
+    br label %1
+  
+  ; <label>:12                                      ; preds = %1
+    ret i32 %shareVal.0
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            sharevalue_enter
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%6' }
+  - { reg: '%r1', virtual-reg: '%7' }
+  - { reg: '%r2', virtual-reg: '%8' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    0
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    successors: %bb.1(100)
+    liveins: %r0, %r1, %r2
+  
+    %8 = COPY %r2
+    %7 = COPY %r1
+    %6 = COPY %r0
+    %9, %cpsr = tMOVi8 0, 14, _
+  
+  bb.1 (%ir-block.1, freq 256):
+    successors: %bb.2(96), %bb.5(3)
+  
+    %0 = PHI %9, %bb.0, %4, %bb.4
+    %1 = PHI %9, %bb.0, %5, %bb.4
+    tCMPr %1, %8, 14, _, implicit-def %cpsr
+    tBcc %bb.5, 10, %cpsr
+    tB %bb.2, 14, _
+  
+  bb.2 (%ir-block.3, freq 248):
+    successors: %bb.3(50), %bb.4(50)
+  
+    %10, %cpsr = tLSLri %1, 2, 14, _
+    %11 = tLDRr %7, %10, 14, _, <0x49630f0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.scevgep)
+    %12, %cpsr = tMOVi8 7, 14, _
+    %2, %cpsr = tMUL killed %11, %12, 14, _
+    %13 = tLDRr %6, %10, 14, _, <0x4963120> = !{!"unison-memory-partition", i32 1} :: (load 4 from %ir.scevgep1)
+    tCMPi8 killed %13, 42, 14, _, implicit-def %cpsr
+    tBcc %bb.4, 1, %cpsr
+    tB %bb.3, 14, _
+  
+  bb.3 (%ir-block.8, freq 124):
+    successors: %bb.4(100)
+  
+    %3, %cpsr = tADDrr %0, %2, 14, _
+  
+  bb.4 (%ir-block.10, freq 248):
+    successors: %bb.1(100)
+  
+    %4 = PHI %0, %bb.2, %3, %bb.3
+    %5, %cpsr = tADDi3 %1, 1, 14, _
+    tB %bb.1, 14, _
+  
+  bb.5 (%ir-block.12, freq 8):
+    liveouts: %r0
+  
+    %r0 = COPY %0
+    tBX_RET 14, _, implicit %r0
+
+...

@@ -1,0 +1,342 @@
+--- |
+  ; ModuleID = 'modexp_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @modexp_enter(i32 signext %base, i32 signext %exp, i32 signext %mod) #0 {
+    %1 = icmp ne i32 %mod, 1
+    br i1 %1, label %2, label %16
+  
+  ; <label>:2                                       ; preds = %0
+    %3 = srem i32 %base, %mod
+    br label %4
+  
+  ; <label>:4                                       ; preds = %12, %2
+    %lsr.iv = phi i32 [ -1, %2 ], [ %lsr.iv.next, %12 ]
+    %result.0 = phi i32 [ 1, %2 ], [ %result.1, %12 ]
+    %.01 = phi i32 [ %exp, %2 ], [ %13, %12 ]
+    %.0 = phi i32 [ %3, %2 ], [ %15, %12 ]
+    %lsr.iv.next = add nsw i32 %lsr.iv, 1
+    %5 = icmp ult i32 %lsr.iv.next, 32
+    br i1 %5, label %6, label %16
+  
+  ; <label>:6                                       ; preds = %4
+    %7 = and i32 %.01, 1
+    %8 = icmp eq i32 %7, 1
+    br i1 %8, label %9, label %12
+  
+  ; <label>:9                                       ; preds = %6
+    %10 = mul nsw i32 %result.0, %.0
+    %11 = srem i32 %10, %mod
+    br label %12
+  
+  ; <label>:12                                      ; preds = %9, %6
+    %result.1 = phi i32 [ %11, %9 ], [ %result.0, %6 ]
+    %13 = ashr i32 %.01, 1
+    %14 = mul nsw i32 %.0, %.0
+    %15 = srem i32 %14, %mod
+    br label %4
+  
+  ; <label>:16                                      ; preds = %4, %0
+    %result.2 = phi i32 [ 0, %0 ], [ %result.0, %4 ]
+    ret i32 %result.2
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            modexp_enter
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+  - { id: 16, class: gpr32 }
+  - { id: 17, class: gpr32 }
+  - { id: 18, class: acc64 }
+  - { id: 19, class: gpr32 }
+  - { id: 20, class: gpr32 }
+  - { id: 21, class: gpr32 }
+  - { id: 22, class: acc64 }
+  - { id: 23, class: gpr32 }
+  - { id: 24, class: acc64 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%11' }
+  - { reg: '%a1', virtual-reg: '%12' }
+  - { reg: '%a2', virtual-reg: '%13' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 16):
+    successors: %bb.1(50), %bb.6(50)
+    liveins: %a0, %a1, %a2
+  
+    %13 = COPY %a2
+    %12 = COPY %a1
+    %11 = COPY %a0
+    %14 = ADDiu %zero, 0
+    %15 = ADDiu %zero, 1
+    BEQ %13, %15, %bb.6, implicit-def dead %at
+    B %bb.1, implicit-def dead %at
+  
+  bb.1 (%ir-block.2, freq 8):
+    successors: %bb.2(100)
+  
+    %18 = PseudoSDIV %11, %13
+    TEQ %13, %zero, 7
+    %0 = PseudoMFHI killed %18
+    %16 = ADDiu %zero, -1
+  
+  bb.2 (%ir-block.4, freq 256):
+    successors: %bb.3(96), %bb.6(3)
+  
+    %1 = PHI %16, %bb.1, %5, %bb.5
+    %2 = PHI %15, %bb.1, %7, %bb.5
+    %3 = PHI %12, %bb.1, %8, %bb.5
+    %4 = PHI %0, %bb.1, %9, %bb.5
+    %5 = ADDiu %1, 1
+    %19 = SLTiu %5, 32
+    BEQ killed %19, %zero, %bb.6, implicit-def dead %at
+    B %bb.3, implicit-def dead %at
+  
+  bb.3 (%ir-block.6, freq 248):
+    successors: %bb.4(50), %bb.5(50)
+  
+    %20 = ANDi %3, 1
+    BEQ killed %20, %zero, %bb.5, implicit-def dead %at
+    B %bb.4, implicit-def dead %at
+  
+  bb.4 (%ir-block.9, freq 124):
+    successors: %bb.5(100)
+  
+    %21 = MUL %2, %4, implicit-def dead %hi0, implicit-def dead %lo0
+    %22 = PseudoSDIV killed %21, %13
+    TEQ %13, %zero, 7
+    %6 = PseudoMFHI killed %22
+  
+  bb.5 (%ir-block.12, freq 248):
+    successors: %bb.2(100)
+  
+    %7 = PHI %2, %bb.3, %6, %bb.4
+    %23 = MUL %4, %4, implicit-def dead %hi0, implicit-def dead %lo0
+    %24 = PseudoSDIV killed %23, %13
+    TEQ %13, %zero, 7
+    %9 = PseudoMFHI killed %24
+    %8 = SRA %3, 1
+    B %bb.2, implicit-def dead %at
+  
+  bb.6 (%ir-block.16, freq 16):
+    liveouts: %v0
+  
+    %10 = PHI %14, %bb.0, %2, %bb.2
+    %v0 = COPY %10
+    RetRA implicit %v0
+
+...
+--- |
+  ; ModuleID = 'modexp_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @modexp_enter(i32 signext %base, i32 signext %exp, i32 signext %mod) #0 {
+    %1 = icmp ne i32 %mod, 1
+    br i1 %1, label %2, label %16
+  
+  ; <label>:2                                       ; preds = %0
+    %3 = srem i32 %base, %mod
+    br label %4
+  
+  ; <label>:4                                       ; preds = %12, %2
+    %lsr.iv = phi i32 [ -1, %2 ], [ %lsr.iv.next, %12 ]
+    %result.0 = phi i32 [ 1, %2 ], [ %result.1, %12 ]
+    %.01 = phi i32 [ %exp, %2 ], [ %13, %12 ]
+    %.0 = phi i32 [ %3, %2 ], [ %15, %12 ]
+    %lsr.iv.next = add nsw i32 %lsr.iv, 1
+    %5 = icmp ult i32 %lsr.iv.next, 32
+    br i1 %5, label %6, label %16
+  
+  ; <label>:6                                       ; preds = %4
+    %7 = and i32 %.01, 1
+    %8 = icmp eq i32 %7, 1
+    br i1 %8, label %9, label %12
+  
+  ; <label>:9                                       ; preds = %6
+    %10 = mul nsw i32 %result.0, %.0
+    %11 = srem i32 %10, %mod
+    br label %12
+  
+  ; <label>:12                                      ; preds = %9, %6
+    %result.1 = phi i32 [ %11, %9 ], [ %result.0, %6 ]
+    %13 = ashr i32 %.01, 1
+    %14 = mul nsw i32 %.0, %.0
+    %15 = srem i32 %14, %mod
+    br label %4
+  
+  ; <label>:16                                      ; preds = %4, %0
+    %result.2 = phi i32 [ 0, %0 ], [ %result.0, %4 ]
+    ret i32 %result.2
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            modexp_enter
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+  - { id: 16, class: gpr32 }
+  - { id: 17, class: gpr32 }
+  - { id: 18, class: acc64 }
+  - { id: 19, class: gpr32 }
+  - { id: 20, class: gpr32 }
+  - { id: 21, class: gpr32 }
+  - { id: 22, class: acc64 }
+  - { id: 23, class: gpr32 }
+  - { id: 24, class: acc64 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%11' }
+  - { reg: '%a1', virtual-reg: '%12' }
+  - { reg: '%a2', virtual-reg: '%13' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 16):
+    successors: %bb.1(50), %bb.6(50)
+    liveins: %a0, %a1, %a2
+  
+    %13 = COPY %a2
+    %12 = COPY %a1
+    %11 = COPY %a0
+    %14 = ADDiu %zero, 0
+    %15 = ADDiu %zero, 1
+    BEQ %13, %15, %bb.6, implicit-def dead %at
+    B %bb.1, implicit-def dead %at
+  
+  bb.1 (%ir-block.2, freq 8):
+    successors: %bb.2(100)
+  
+    %18 = PseudoSDIV %11, %13
+    TEQ %13, %zero, 7
+    %0 = PseudoMFHI killed %18
+    %16 = ADDiu %zero, -1
+  
+  bb.2 (%ir-block.4, freq 256):
+    successors: %bb.3(96), %bb.6(3)
+  
+    %1 = PHI %16, %bb.1, %5, %bb.5
+    %2 = PHI %15, %bb.1, %7, %bb.5
+    %3 = PHI %12, %bb.1, %8, %bb.5
+    %4 = PHI %0, %bb.1, %9, %bb.5
+    %5 = ADDiu %1, 1
+    %19 = SLTiu %5, 32
+    BEQ killed %19, %zero, %bb.6, implicit-def dead %at
+    B %bb.3, implicit-def dead %at
+  
+  bb.3 (%ir-block.6, freq 248):
+    successors: %bb.4(50), %bb.5(50)
+  
+    %20 = ANDi %3, 1
+    BEQ killed %20, %zero, %bb.5, implicit-def dead %at
+    B %bb.4, implicit-def dead %at
+  
+  bb.4 (%ir-block.9, freq 124):
+    successors: %bb.5(100)
+  
+    %21 = MUL %2, %4, implicit-def dead %hi0, implicit-def dead %lo0
+    %22 = PseudoSDIV killed %21, %13
+    TEQ %13, %zero, 7
+    %6 = PseudoMFHI killed %22
+  
+  bb.5 (%ir-block.12, freq 248):
+    successors: %bb.2(100)
+  
+    %7 = PHI %2, %bb.3, %6, %bb.4
+    %23 = MUL %4, %4, implicit-def dead %hi0, implicit-def dead %lo0
+    %24 = PseudoSDIV killed %23, %13
+    TEQ %13, %zero, 7
+    %9 = PseudoMFHI killed %24
+    %8 = SRA %3, 1
+    B %bb.2, implicit-def dead %at
+  
+  bb.6 (%ir-block.16, freq 16):
+    liveouts: %v0
+  
+    %10 = PHI %14, %bb.0, %2, %bb.2
+    %v0 = COPY %10
+    RetRA implicit %v0
+
+...

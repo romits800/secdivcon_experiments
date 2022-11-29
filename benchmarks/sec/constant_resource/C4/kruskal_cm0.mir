@@ -1,0 +1,220 @@
+--- |
+  ; ModuleID = 'kruskal_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: norecurse nounwind
+  define arm_aapcscc void @kruskal_enter(i32* nocapture readonly %g, i32* nocapture %mst, i32* nocapture %par, i32 %len) #0 {
+    %1 = icmp sgt i32 %len, 0
+    br i1 %1, label %.lr.ph5, label %._crit_edge
+  
+  .preheader:                                       ; preds = %.lr.ph5
+    %2 = icmp sgt i32 %len, 1
+    br i1 %2, label %.lr.ph, label %._crit_edge
+  
+  .lr.ph5:                                          ; preds = %0, %.lr.ph5
+    %i.03 = phi i32 [ %3, %.lr.ph5 ], [ 0, %0 ]
+    %scevgep5 = getelementptr i32, i32* %mst, i32 %i.03
+    store i32 -1, i32* %scevgep5, align 4
+    %scevgep4 = getelementptr i32, i32* %par, i32 %i.03
+    store i32 %i.03, i32* %scevgep4, align 4
+    %3 = add nuw nsw i32 %i.03, 1
+    %exitcond = icmp eq i32 %len, %3
+    br i1 %exitcond, label %.preheader, label %.lr.ph5
+  
+  .lr.ph:                                           ; preds = %.preheader, %13
+    %lsr.iv = phi i32 [ %lsr.iv.next, %13 ], [ 0, %.preheader ]
+    %idx.02 = phi i32 [ %idx.1, %13 ], [ 0, %.preheader ]
+    %scevgep2 = getelementptr i32, i32* %g, i32 %lsr.iv
+    %scevgep3 = getelementptr i32, i32* %scevgep2, i32 1
+    %4 = load i32, i32* %scevgep3, align 4
+    %scevgep = getelementptr i32, i32* %g, i32 %lsr.iv
+    %scevgep1 = getelementptr i32, i32* %scevgep, i32 2
+    %5 = load i32, i32* %scevgep1, align 4
+    %6 = icmp eq i32 %4, %5
+    br i1 %6, label %13, label %7
+  
+  ; <label>:7                                       ; preds = %.lr.ph
+    %8 = add nsw i32 %idx.02, 1
+    %9 = getelementptr inbounds i32, i32* %mst, i32 %8
+    store i32 %4, i32* %9, align 4
+    %10 = add nsw i32 %idx.02, 2
+    %11 = getelementptr inbounds i32, i32* %mst, i32 %10
+    store i32 %5, i32* %11, align 4
+    %12 = getelementptr inbounds i32, i32* %par, i32 %4
+    store i32 %5, i32* %12, align 4
+    br label %13
+  
+  ; <label>:13                                      ; preds = %7, %.lr.ph
+    %idx.1 = phi i32 [ %10, %7 ], [ %idx.02, %.lr.ph ]
+    %lsr.iv.next = add nuw nsw i32 %lsr.iv, 2
+    %14 = add i32 %lsr.iv.next, 1
+    %15 = icmp slt i32 %14, %len
+    br i1 %15, label %.lr.ph, label %._crit_edge
+  
+  ._crit_edge:                                      ; preds = %13, %.preheader, %0
+    %idx.0.lcssa = phi i32 [ 0, %.preheader ], [ 0, %0 ], [ %idx.1, %13 ]
+    %16 = sdiv i32 %idx.0.lcssa, 2
+    %17 = add nsw i32 %16, 1
+    store i32 %17, i32* %mst, align 4
+    ret void
+  }
+  
+  attributes #0 = { norecurse nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            kruskal_enter
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+  - { id: 9, class: tgpr }
+  - { id: 10, class: tgpr }
+  - { id: 11, class: tgpr }
+  - { id: 12, class: tgpr }
+  - { id: 13, class: tgpr }
+  - { id: 14, class: tgpr }
+  - { id: 15, class: tgpr }
+  - { id: 16, class: tgpr }
+  - { id: 17, class: tgpr }
+  - { id: 18, class: tgpr }
+  - { id: 19, class: tgpr }
+  - { id: 20, class: tgpr }
+  - { id: 21, class: tgpr }
+  - { id: 22, class: tgpr }
+  - { id: 23, class: tgpr }
+  - { id: 24, class: tgpr }
+  - { id: 25, class: tgpr }
+  - { id: 26, class: tgpr }
+  - { id: 27, class: tgpr }
+  - { id: 28, class: tgpr }
+  - { id: 29, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%10' }
+  - { reg: '%r1', virtual-reg: '%11' }
+  - { reg: '%r2', virtual-reg: '%12' }
+  - { reg: '%r3', virtual-reg: '%13' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    0
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 25):
+    successors: %bb.7(62), %bb.6.._crit_edge(37)
+    liveins: %r0, %r1, %r2, %r3
+  
+    %13 = COPY %r3
+    %12 = COPY %r2
+    %11 = COPY %r1
+    %10 = COPY %r0
+    %14, %cpsr = tMOVi8 0, 14, _
+    tCMPi8 %13, 0, 14, _, implicit-def %cpsr
+    tBcc %bb.6.._crit_edge, 13, %cpsr
+  
+  bb.7 (freq 16):
+    successors: %bb.2..lr.ph5(100)
+  
+    tB %bb.2..lr.ph5, 14, _
+  
+  bb.1..preheader (freq 16):
+    successors: %bb.8(50), %bb.6.._crit_edge(50)
+  
+    %18, %cpsr = tMOVi8 0, 14, _
+    tCMPi8 %13, 1, 14, _, implicit-def %cpsr
+    tBcc %bb.6.._crit_edge, 13, %cpsr
+  
+  bb.8 (freq 8):
+    successors: %bb.3..lr.ph(100)
+  
+    tB %bb.3..lr.ph, 14, _
+  
+  bb.2..lr.ph5 (freq 511):
+    successors: %bb.1..preheader(3), %bb.2..lr.ph5(96)
+  
+    %0 = PHI %14, %bb.7, %1, %bb.2..lr.ph5
+    %15, %cpsr = tLSLri %0, 2, 14, _
+    %17, %cpsr = tMVN %14, 14, _
+    tSTRr killed %17, %11, %15, 14, _, <0x395d090> = !{!"unison-memory-partition", i32 0} :: (store 4 into %ir.scevgep5)
+    tSTRr %0, %12, %15, 14, _, <0x395d090> = !{!"unison-memory-partition", i32 0} :: (store 4 into %ir.scevgep4)
+    %1, %cpsr = tADDi3 %0, 1, 14, _
+    tCMPr %13, %1, 14, _, implicit-def %cpsr
+    tBcc %bb.1..preheader, 0, %cpsr
+    tB %bb.2..lr.ph5, 14, _
+  
+  bb.3..lr.ph (freq 255):
+    successors: %bb.5(50), %bb.4(50)
+  
+    %2 = PHI %18, %bb.8, %8, %bb.5
+    %3 = PHI %18, %bb.8, %7, %bb.5
+    %19, %cpsr = tLSLri %2, 2, 14, _
+    %20, %cpsr = tADDrr %10, killed %19, 14, _
+    %4 = tLDRi %20, 1, 14, _, <0x395ba10> = !{!"unison-memory-partition", i32 1} :: (load 4 from %ir.scevgep3)
+    %5 = tLDRi %20, 2, 14, _, <0x395d090> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.scevgep1)
+    tCMPr %4, %5, 14, _, implicit-def %cpsr
+    tBcc %bb.5, 0, %cpsr
+    tB %bb.4, 14, _
+  
+  bb.4 (%ir-block.7, freq 127):
+    successors: %bb.5(100)
+  
+    %21, %cpsr = tLSLri %3, 2, 14, _
+    %22, %cpsr = tADDrr killed %21, %11, 14, _
+    tSTRi %4, killed %22, 1, 14, _, <0x395d090> = !{!"unison-memory-partition", i32 0} :: (store 4 into %ir.9)
+    %6, %cpsr = tADDi3 %3, 2, 14, _
+    %23, %cpsr = tLSLri %6, 2, 14, _
+    tSTRr %5, %11, killed %23, 14, _, <0x395d090> = !{!"unison-memory-partition", i32 0} :: (store 4 into %ir.11)
+    %24, %cpsr = tLSLri %4, 2, 14, _
+    tSTRr %5, %12, killed %24, 14, _, <0x395d090> = !{!"unison-memory-partition", i32 0} :: (store 4 into %ir.12)
+  
+  bb.5 (%ir-block.13, freq 255):
+    successors: %bb.3..lr.ph(96), %bb.6.._crit_edge(3)
+  
+    %7 = PHI %3, %bb.3..lr.ph, %6, %bb.4
+    %8, %cpsr = tADDi3 %2, 2, 14, _
+    %25, %cpsr = tADDi3 %2, 3, 14, _
+    tCMPr killed %25, %13, 14, _, implicit-def %cpsr
+    tBcc %bb.3..lr.ph, 11, %cpsr
+    tB %bb.6.._crit_edge, 14, _
+  
+  bb.6.._crit_edge (freq 25):
+    liveouts:
+  
+    %9 = PHI %14, %bb.0, %18, %bb.1..preheader, %7, %bb.5
+    %26, %cpsr = tLSRri %9, 31, 14, _
+    %27, %cpsr = tADDrr %9, killed %26, 14, _
+    %28, %cpsr = tASRri killed %27, 1, 14, _
+    %29, %cpsr = tADDi3 killed %28, 1, 14, _
+    tSTRi killed %29, %11, 0, 14, _, <0x395d090> = !{!"unison-memory-partition", i32 0} :: (store 4 into %ir.mst)
+    tBX_RET 14, _
+
+...

@@ -1,0 +1,274 @@
+--- |
+  ; ModuleID = 'sharevalue_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @sharevalue_enter(i32* %ids, i32* %qty, i32 signext %len) #0 {
+    br label %1
+  
+  ; <label>:1                                       ; preds = %3, %8, %0
+    %lsr.iv3 = phi i32 [ -1, %0 ], [ %lsr.iv.next, %8 ], [ %lsr.iv.next, %3 ]
+    %lsr.iv1 = phi i32* [ %ids, %0 ], [ %scevgep2, %8 ], [ %scevgep2, %3 ]
+    %lsr.iv = phi i32* [ %qty, %0 ], [ %scevgep, %8 ], [ %scevgep, %3 ]
+    %shareVal.0 = phi i32 [ 0, %0 ], [ %9, %8 ], [ %shareVal.0, %3 ]
+    %scevgep = getelementptr i32, i32* %lsr.iv, i32 1
+    %scevgep2 = getelementptr i32, i32* %lsr.iv1, i32 1
+    %lsr.iv.next = add nsw i32 %lsr.iv3, 1
+    %2 = icmp slt i32 %lsr.iv.next, %len
+    br i1 %2, label %3, label %10
+  
+  ; <label>:3                                       ; preds = %1
+    %4 = load i32, i32* %lsr.iv1, align 4
+    %5 = load i32, i32* %lsr.iv, align 4
+    %6 = mul nsw i32 7, %5
+    %7 = icmp eq i32 %4, 42
+    br i1 %7, label %8, label %1
+  
+  ; <label>:8                                       ; preds = %3
+    %9 = add nsw i32 %shareVal.0, %6
+    br label %1
+  
+  ; <label>:10                                      ; preds = %1
+    ret i32 %shareVal.0
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            sharevalue_enter
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+  - { id: 16, class: gpr32 }
+  - { id: 17, class: gpr32 }
+  - { id: 18, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%9' }
+  - { reg: '%a1', virtual-reg: '%10' }
+  - { reg: '%a2', virtual-reg: '%11' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    successors: %bb.1(100)
+    liveins: %a0, %a1, %a2
+  
+    %11 = COPY %a2
+    %10 = COPY %a1
+    %9 = COPY %a0
+    %13 = ADDiu %zero, 0
+    %12 = ADDiu %zero, -1
+    %18 = ADDiu %zero, 42
+  
+  bb.1 (%ir-block.1, freq 256):
+    successors: %bb.2(96), %bb.4(3)
+  
+    %0 = PHI %12, %bb.0, %6, %bb.2, %6, %bb.3
+    %1 = PHI %9, %bb.0, %5, %bb.2, %5, %bb.3
+    %2 = PHI %10, %bb.0, %4, %bb.2, %4, %bb.3
+    %3 = PHI %13, %bb.0, %3, %bb.2, %8, %bb.3
+    %6 = ADDiu %0, 1
+    %14 = SLT %6, %11
+    BEQ killed %14, %zero, %bb.4, implicit-def dead %at
+    B %bb.2, implicit-def dead %at
+  
+  bb.2 (%ir-block.3, freq 248):
+    successors: %bb.3(50), %bb.1(50)
+  
+    %5 = ADDiu %1, 4
+    %4 = ADDiu %2, 4
+    %17 = LW %1, 0, <0x41995a0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.lsr.iv1)
+    BNE killed %17, %18, %bb.1, implicit-def dead %at
+    B %bb.3, implicit-def dead %at
+  
+  bb.3 (%ir-block.8, freq 124):
+    successors: %bb.1(100)
+  
+    %15 = LW %2, 0, <0x41995a0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.lsr.iv)
+    %16 = SLL %15, 3
+    %7 = SUBu %16, %15
+    %8 = ADDu %3, %7
+    B %bb.1, implicit-def dead %at
+  
+  bb.4 (%ir-block.10, freq 8):
+    liveouts: %v0
+  
+    %v0 = COPY %3
+    RetRA implicit %v0
+
+...
+--- |
+  ; ModuleID = 'sharevalue_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @sharevalue_enter(i32* %ids, i32* %qty, i32 signext %len) #0 {
+    br label %1
+  
+  ; <label>:1                                       ; preds = %3, %8, %0
+    %lsr.iv3 = phi i32 [ -1, %0 ], [ %lsr.iv.next, %8 ], [ %lsr.iv.next, %3 ]
+    %lsr.iv1 = phi i32* [ %ids, %0 ], [ %scevgep2, %8 ], [ %scevgep2, %3 ]
+    %lsr.iv = phi i32* [ %qty, %0 ], [ %scevgep, %8 ], [ %scevgep, %3 ]
+    %shareVal.0 = phi i32 [ 0, %0 ], [ %9, %8 ], [ %shareVal.0, %3 ]
+    %scevgep = getelementptr i32, i32* %lsr.iv, i32 1
+    %scevgep2 = getelementptr i32, i32* %lsr.iv1, i32 1
+    %lsr.iv.next = add nsw i32 %lsr.iv3, 1
+    %2 = icmp slt i32 %lsr.iv.next, %len
+    br i1 %2, label %3, label %10
+  
+  ; <label>:3                                       ; preds = %1
+    %4 = load i32, i32* %lsr.iv1, align 4
+    %5 = load i32, i32* %lsr.iv, align 4
+    %6 = mul nsw i32 7, %5
+    %7 = icmp eq i32 %4, 42
+    br i1 %7, label %8, label %1
+  
+  ; <label>:8                                       ; preds = %3
+    %9 = add nsw i32 %shareVal.0, %6
+    br label %1
+  
+  ; <label>:10                                      ; preds = %1
+    ret i32 %shareVal.0
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            sharevalue_enter
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+  - { id: 16, class: gpr32 }
+  - { id: 17, class: gpr32 }
+  - { id: 18, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%9' }
+  - { reg: '%a1', virtual-reg: '%10' }
+  - { reg: '%a2', virtual-reg: '%11' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    successors: %bb.1(100)
+    liveins: %a0, %a1, %a2
+  
+    %11 = COPY %a2
+    %10 = COPY %a1
+    %9 = COPY %a0
+    %13 = ADDiu %zero, 0
+    %12 = ADDiu %zero, -1
+    %18 = ADDiu %zero, 42
+  
+  bb.1 (%ir-block.1, freq 256):
+    successors: %bb.2(96), %bb.4(3)
+  
+    %0 = PHI %12, %bb.0, %6, %bb.2, %6, %bb.3
+    %1 = PHI %9, %bb.0, %5, %bb.2, %5, %bb.3
+    %2 = PHI %10, %bb.0, %4, %bb.2, %4, %bb.3
+    %3 = PHI %13, %bb.0, %3, %bb.2, %8, %bb.3
+    %6 = ADDiu %0, 1
+    %14 = SLT %6, %11
+    BEQ killed %14, %zero, %bb.4, implicit-def dead %at
+    B %bb.2, implicit-def dead %at
+  
+  bb.2 (%ir-block.3, freq 248):
+    successors: %bb.3(50), %bb.1(50)
+  
+    %5 = ADDiu %1, 4
+    %4 = ADDiu %2, 4
+    %17 = LW %1, 0, <0x41995a0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.lsr.iv1)
+    BNE killed %17, %18, %bb.1, implicit-def dead %at
+    B %bb.3, implicit-def dead %at
+  
+  bb.3 (%ir-block.8, freq 124):
+    successors: %bb.1(100)
+  
+    %15 = LW %2, 0, <0x41995a0> = !{!"unison-memory-partition", i32 0} :: (load 4 from %ir.lsr.iv)
+    %16 = SLL %15, 3
+    %7 = SUBu %16, %15
+    %8 = ADDu %3, %7
+    B %bb.1, implicit-def dead %at
+  
+  bb.4 (%ir-block.10, freq 8):
+    liveouts: %v0
+  
+    %v0 = COPY %3
+    RetRA implicit %v0
+
+...

@@ -1,0 +1,160 @@
+--- |
+  ; ModuleID = 'password_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @compare_key(i32 signext %pub, i32 signext %key) #0 {
+    %1 = icmp eq i32 %key, %pub
+    br i1 %1, label %2, label %3
+  
+  ; <label>:2                                       ; preds = %0
+    br label %3
+  
+  ; <label>:3                                       ; preds = %2, %0
+    %r.0 = phi i32 [ 1, %2 ], [ 0, %0 ]
+    ret i32 %r.0
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            compare_key
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%1' }
+  - { reg: '%a1', virtual-reg: '%2' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 16):
+    successors: %bb.1(50), %bb.2(50)
+    liveins: %a0, %a1
+  
+    %2 = COPY %a1
+    %1 = COPY %a0
+    %3 = ADDiu %zero, 0
+    BNE %2, %1, %bb.2, implicit-def dead %at
+    B %bb.1, implicit-def dead %at
+  
+  bb.1 (%ir-block.2, freq 8):
+    successors: %bb.2(100)
+  
+    %4 = ADDiu %zero, 1
+  
+  bb.2 (%ir-block.3, freq 16):
+    liveouts: %v0
+  
+    %0 = PHI %3, %bb.0, %4, %bb.1
+    %v0 = COPY %0
+    RetRA implicit %v0
+
+...
+--- |
+  ; ModuleID = 'password_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @compare_key(i32 signext %pub, i32 signext %key) #0 {
+    %1 = icmp eq i32 %key, %pub
+    br i1 %1, label %2, label %3
+  
+  ; <label>:2                                       ; preds = %0
+    br label %3
+  
+  ; <label>:3                                       ; preds = %2, %0
+    %r.0 = phi i32 [ 1, %2 ], [ 0, %0 ]
+    ret i32 %r.0
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            compare_key
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%1' }
+  - { reg: '%a1', virtual-reg: '%2' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 16):
+    successors: %bb.1(50), %bb.2(50)
+    liveins: %a0, %a1
+  
+    %2 = COPY %a1
+    %1 = COPY %a0
+    %3 = ADDiu %zero, 0
+    BNE %2, %1, %bb.2, implicit-def dead %at
+    B %bb.1, implicit-def dead %at
+  
+  bb.1 (%ir-block.2, freq 8):
+    successors: %bb.2(100)
+  
+    %4 = ADDiu %zero, 1
+  
+  bb.2 (%ir-block.3, freq 16):
+    liveouts: %v0
+  
+    %0 = PHI %3, %bb.0, %4, %bb.1
+    %v0 = COPY %0
+    RetRA implicit %v0
+
+...

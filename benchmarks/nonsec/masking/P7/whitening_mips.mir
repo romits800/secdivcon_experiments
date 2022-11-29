@@ -1,0 +1,419 @@
+--- |
+  ; ModuleID = 'whitening_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define void @whitening(i8 zeroext %key0, i8 zeroext %key1, i8 zeroext %key2, i8 zeroext %key3, i8 zeroext %key4, i8 zeroext %key5, i8 zeroext %key6, i8 zeroext %key7, i8 zeroext %key8, i8 zeroext %key9, i8 zeroext %key10, i8 zeroext %key11, i8 zeroext %key12, i8 zeroext %key13, i8 zeroext %key14, i8 zeroext %key15, i8 zeroext %pt0, i8 zeroext %pt1, i8 zeroext %pt2, i8 zeroext %pt3, i8 zeroext %pt4, i8 zeroext %pt5, i8 zeroext %pt6, i8 zeroext %pt7, i8 zeroext %pt8, i8 zeroext %pt9, i8 zeroext %pt10, i8 zeroext %pt11, i8 zeroext %pt12, i8 zeroext %pt13, i8 zeroext %pt14, i8 zeroext %pt15, i8 zeroext %mask0, i8 zeroext %mask1, i8 zeroext %mask2, i8 zeroext %mask3, i8 zeroext %mask4, i8 zeroext %mask5, i8 zeroext %mask6, i8 zeroext %mask7, i8 zeroext %mask8, i8 zeroext %mask9, i8 zeroext %mask10, i8 zeroext %mask11, i8 zeroext %mask12, i8 zeroext %mask13, i8 zeroext %mask14, i8 zeroext %mask15) #0 {
+    %st0 = alloca i8, align 1
+    %st1 = alloca i8, align 1
+    %st2 = alloca i8, align 1
+    %st3 = alloca i8, align 1
+    %st4 = alloca i8, align 1
+    %st5 = alloca i8, align 1
+    %st6 = alloca i8, align 1
+    %st7 = alloca i8, align 1
+    %st8 = alloca i8, align 1
+    %st9 = alloca i8, align 1
+    %st10 = alloca i8, align 1
+    %st11 = alloca i8, align 1
+    %st12 = alloca i8, align 1
+    %st13 = alloca i8, align 1
+    %st14 = alloca i8, align 1
+    %st15 = alloca i8, align 1
+    %1 = zext i8 %pt0 to i32
+    %2 = zext i8 %key0 to i32
+    %3 = zext i8 %mask0 to i32
+    %4 = xor i32 %2, %3
+    %5 = xor i32 %1, %4
+    %6 = trunc i32 %5 to i8
+    store volatile i8 %6, i8* %st0, align 1
+    %7 = zext i8 %pt1 to i32
+    %8 = zext i8 %key1 to i32
+    %9 = zext i8 %mask1 to i32
+    %10 = xor i32 %8, %9
+    %11 = xor i32 %7, %10
+    %12 = trunc i32 %11 to i8
+    store volatile i8 %12, i8* %st1, align 1
+    %13 = zext i8 %pt2 to i32
+    %14 = zext i8 %key2 to i32
+    %15 = zext i8 %mask2 to i32
+    %16 = xor i32 %14, %15
+    %17 = xor i32 %13, %16
+    %18 = trunc i32 %17 to i8
+    store volatile i8 %18, i8* %st2, align 1
+    %19 = zext i8 %pt3 to i32
+    %20 = zext i8 %key3 to i32
+    %21 = zext i8 %mask3 to i32
+    %22 = xor i32 %20, %21
+    %23 = xor i32 %19, %22
+    %24 = trunc i32 %23 to i8
+    store volatile i8 %24, i8* %st3, align 1
+    %25 = zext i8 %pt4 to i32
+    %26 = zext i8 %key4 to i32
+    %27 = zext i8 %mask4 to i32
+    %28 = xor i32 %26, %27
+    %29 = xor i32 %25, %28
+    %30 = trunc i32 %29 to i8
+    store volatile i8 %30, i8* %st4, align 1
+    %31 = zext i8 %pt5 to i32
+    %32 = zext i8 %key5 to i32
+    %33 = zext i8 %mask5 to i32
+    %34 = xor i32 %32, %33
+    %35 = xor i32 %31, %34
+    %36 = trunc i32 %35 to i8
+    store volatile i8 %36, i8* %st5, align 1
+    %37 = zext i8 %pt6 to i32
+    %38 = zext i8 %key6 to i32
+    %39 = zext i8 %mask6 to i32
+    %40 = xor i32 %38, %39
+    %41 = xor i32 %37, %40
+    %42 = trunc i32 %41 to i8
+    store volatile i8 %42, i8* %st6, align 1
+    %43 = zext i8 %pt7 to i32
+    %44 = zext i8 %key7 to i32
+    %45 = zext i8 %mask7 to i32
+    %46 = xor i32 %44, %45
+    %47 = xor i32 %43, %46
+    %48 = trunc i32 %47 to i8
+    store volatile i8 %48, i8* %st7, align 1
+    %49 = zext i8 %pt8 to i32
+    %50 = zext i8 %key8 to i32
+    %51 = zext i8 %mask8 to i32
+    %52 = xor i32 %50, %51
+    %53 = xor i32 %49, %52
+    %54 = trunc i32 %53 to i8
+    store volatile i8 %54, i8* %st8, align 1
+    %55 = zext i8 %pt9 to i32
+    %56 = zext i8 %key9 to i32
+    %57 = zext i8 %mask9 to i32
+    %58 = xor i32 %56, %57
+    %59 = xor i32 %55, %58
+    %60 = trunc i32 %59 to i8
+    store volatile i8 %60, i8* %st9, align 1
+    %61 = zext i8 %pt10 to i32
+    %62 = zext i8 %key10 to i32
+    %63 = zext i8 %mask10 to i32
+    %64 = xor i32 %62, %63
+    %65 = xor i32 %61, %64
+    %66 = trunc i32 %65 to i8
+    store volatile i8 %66, i8* %st10, align 1
+    %67 = zext i8 %pt11 to i32
+    %68 = zext i8 %key11 to i32
+    %69 = zext i8 %mask11 to i32
+    %70 = xor i32 %68, %69
+    %71 = xor i32 %67, %70
+    %72 = trunc i32 %71 to i8
+    store volatile i8 %72, i8* %st11, align 1
+    %73 = zext i8 %pt12 to i32
+    %74 = zext i8 %key12 to i32
+    %75 = zext i8 %mask12 to i32
+    %76 = xor i32 %74, %75
+    %77 = xor i32 %73, %76
+    %78 = trunc i32 %77 to i8
+    store volatile i8 %78, i8* %st12, align 1
+    %79 = zext i8 %pt13 to i32
+    %80 = zext i8 %key13 to i32
+    %81 = zext i8 %mask13 to i32
+    %82 = xor i32 %80, %81
+    %83 = xor i32 %79, %82
+    %84 = trunc i32 %83 to i8
+    store volatile i8 %84, i8* %st13, align 1
+    %85 = zext i8 %pt14 to i32
+    %86 = zext i8 %key14 to i32
+    %87 = zext i8 %mask14 to i32
+    %88 = xor i32 %86, %87
+    %89 = xor i32 %85, %88
+    %90 = trunc i32 %89 to i8
+    store volatile i8 %90, i8* %st14, align 1
+    %91 = zext i8 %pt15 to i32
+    %92 = zext i8 %key15 to i32
+    %93 = zext i8 %mask15 to i32
+    %94 = xor i32 %92, %93
+    %95 = xor i32 %91, %94
+    %96 = trunc i32 %95 to i8
+    store volatile i8 %96, i8* %st15, align 1
+    ret void
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            whitening
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+  - { id: 16, class: gpr32 }
+  - { id: 17, class: gpr32 }
+  - { id: 18, class: gpr32 }
+  - { id: 19, class: gpr32 }
+  - { id: 20, class: gpr32 }
+  - { id: 21, class: gpr32 }
+  - { id: 22, class: gpr32 }
+  - { id: 23, class: gpr32 }
+  - { id: 24, class: gpr32 }
+  - { id: 25, class: gpr32 }
+  - { id: 26, class: gpr32 }
+  - { id: 27, class: gpr32 }
+  - { id: 28, class: gpr32 }
+  - { id: 29, class: gpr32 }
+  - { id: 30, class: gpr32 }
+  - { id: 31, class: gpr32 }
+  - { id: 32, class: gpr32 }
+  - { id: 33, class: gpr32 }
+  - { id: 34, class: gpr32 }
+  - { id: 35, class: gpr32 }
+  - { id: 36, class: gpr32 }
+  - { id: 37, class: gpr32 }
+  - { id: 38, class: gpr32 }
+  - { id: 39, class: gpr32 }
+  - { id: 40, class: gpr32 }
+  - { id: 41, class: gpr32 }
+  - { id: 42, class: gpr32 }
+  - { id: 43, class: gpr32 }
+  - { id: 44, class: gpr32 }
+  - { id: 45, class: gpr32 }
+  - { id: 46, class: gpr32 }
+  - { id: 47, class: gpr32 }
+  - { id: 48, class: gpr32 }
+  - { id: 49, class: gpr32 }
+  - { id: 50, class: gpr32 }
+  - { id: 51, class: gpr32 }
+  - { id: 52, class: gpr32 }
+  - { id: 53, class: gpr32 }
+  - { id: 54, class: gpr32 }
+  - { id: 55, class: gpr32 }
+  - { id: 56, class: gpr32 }
+  - { id: 57, class: gpr32 }
+  - { id: 58, class: gpr32 }
+  - { id: 59, class: gpr32 }
+  - { id: 60, class: gpr32 }
+  - { id: 61, class: gpr32 }
+  - { id: 62, class: gpr32 }
+  - { id: 63, class: gpr32 }
+  - { id: 64, class: gpr32 }
+  - { id: 65, class: gpr32 }
+  - { id: 66, class: gpr32 }
+  - { id: 67, class: gpr32 }
+  - { id: 68, class: gpr32 }
+  - { id: 69, class: gpr32 }
+  - { id: 70, class: gpr32 }
+  - { id: 71, class: gpr32 }
+  - { id: 72, class: gpr32 }
+  - { id: 73, class: gpr32 }
+  - { id: 74, class: gpr32 }
+  - { id: 75, class: gpr32 }
+  - { id: 76, class: gpr32 }
+  - { id: 77, class: gpr32 }
+  - { id: 78, class: gpr32 }
+  - { id: 79, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%0' }
+  - { reg: '%a1', virtual-reg: '%1' }
+  - { reg: '%a2', virtual-reg: '%2' }
+  - { reg: '%a3', virtual-reg: '%3' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    4
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+fixedStack:      
+  - { id: 0, offset: 188, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 1, offset: 184, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 2, offset: 180, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 3, offset: 176, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 4, offset: 172, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 5, offset: 168, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 6, offset: 164, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 7, offset: 160, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 8, offset: 156, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 9, offset: 152, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 10, offset: 148, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 11, offset: 144, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 12, offset: 140, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 13, offset: 136, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 14, offset: 132, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 15, offset: 128, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 16, offset: 124, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 17, offset: 120, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 18, offset: 116, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 19, offset: 112, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 20, offset: 108, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 21, offset: 104, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 22, offset: 100, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 23, offset: 96, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 24, offset: 92, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 25, offset: 88, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 26, offset: 84, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 27, offset: 80, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 28, offset: 76, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 29, offset: 72, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 30, offset: 68, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 31, offset: 64, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 32, offset: 60, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 33, offset: 56, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 34, offset: 52, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 35, offset: 48, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 36, offset: 44, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 37, offset: 40, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 38, offset: 36, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 39, offset: 32, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 40, offset: 28, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 41, offset: 24, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+  - { id: 42, offset: 20, size: 4, alignment: 4, isImmutable: true, isAliased: false }
+  - { id: 43, offset: 16, size: 4, alignment: 8, isImmutable: true, isAliased: false }
+stack:           
+  - { id: 0, name: st0, offset: 0, size: 1, alignment: 4 }
+  - { id: 1, name: st1, offset: 0, size: 1, alignment: 4 }
+  - { id: 2, name: st2, offset: 0, size: 1, alignment: 4 }
+  - { id: 3, name: st3, offset: 0, size: 1, alignment: 4 }
+  - { id: 4, name: st4, offset: 0, size: 1, alignment: 4 }
+  - { id: 5, name: st5, offset: 0, size: 1, alignment: 4 }
+  - { id: 6, name: st6, offset: 0, size: 1, alignment: 4 }
+  - { id: 7, name: st7, offset: 0, size: 1, alignment: 4 }
+  - { id: 8, name: st8, offset: 0, size: 1, alignment: 4 }
+  - { id: 9, name: st9, offset: 0, size: 1, alignment: 4 }
+  - { id: 10, name: st10, offset: 0, size: 1, alignment: 4 }
+  - { id: 11, name: st11, offset: 0, size: 1, alignment: 4 }
+  - { id: 12, name: st12, offset: 0, size: 1, alignment: 4 }
+  - { id: 13, name: st13, offset: 0, size: 1, alignment: 4 }
+  - { id: 14, name: st14, offset: 0, size: 1, alignment: 4 }
+  - { id: 15, name: st15, offset: 0, size: 1, alignment: 4 }
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %a0, %a1, %a2, %a3
+    liveouts:
+  
+    %3 = COPY %a3
+    %2 = COPY %a2
+    %1 = COPY %a1
+    %0 = COPY %a0
+    %4 = LW %fixed-stack.15, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %5 = XOR %0, killed %4
+    %6 = LW %fixed-stack.31, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %7 = XOR killed %6, killed %5
+    %8 = LW %fixed-stack.25, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %9 = LW %fixed-stack.9, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %10 = LW %fixed-stack.41, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %11 = LW %fixed-stack.24, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %12 = LW %fixed-stack.8, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %13 = LW %fixed-stack.40, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %14 = LW %fixed-stack.23, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %15 = LW %fixed-stack.22, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %16 = LW %fixed-stack.21, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %17 = LW %fixed-stack.20, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %18 = LW %fixed-stack.19, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %19 = LW %fixed-stack.18, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %20 = LW %fixed-stack.17, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %21 = LW %fixed-stack.16, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %22 = LW %fixed-stack.26, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %23 = LW %fixed-stack.10, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %24 = LW %fixed-stack.42, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %25 = LW %fixed-stack.0, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %26 = LW %fixed-stack.32, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %27 = LW %fixed-stack.1, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %28 = LW %fixed-stack.33, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %29 = LW %fixed-stack.2, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %30 = LW %fixed-stack.34, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %31 = LW %fixed-stack.3, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %32 = LW %fixed-stack.35, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %33 = LW %fixed-stack.4, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %34 = LW %fixed-stack.36, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %35 = LW %fixed-stack.5, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %36 = LW %fixed-stack.37, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %37 = LW %fixed-stack.6, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %38 = LW %fixed-stack.38, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %39 = LW %fixed-stack.7, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %40 = LW %fixed-stack.39, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %41 = LW %fixed-stack.27, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %42 = LW %fixed-stack.11, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %43 = LW %fixed-stack.43, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %44 = LW %fixed-stack.28, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %45 = LW %fixed-stack.12, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %46 = LW %fixed-stack.29, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %47 = LW %fixed-stack.13, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack, align 8)
+    %48 = LW %fixed-stack.30, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    %49 = LW %fixed-stack.14, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
+    SB killed %7, %stack.0.st0, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st0, align 4)
+    %50 = XOR %1, killed %49
+    %51 = XOR killed %48, killed %50
+    SB killed %51, %stack.1.st1, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st1, align 4)
+    %52 = XOR %2, killed %47
+    %53 = XOR killed %46, killed %52
+    SB killed %53, %stack.2.st2, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st2, align 4)
+    %54 = XOR %3, killed %45
+    %55 = XOR killed %44, killed %54
+    SB killed %55, %stack.3.st3, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st3, align 4)
+    %56 = XOR killed %43, killed %42
+    %57 = XOR killed %41, killed %56
+    SB killed %57, %stack.4.st4, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st4, align 4)
+    %58 = XOR killed %40, killed %39
+    %59 = XOR killed %38, killed %37
+    %60 = XOR killed %36, killed %35
+    %61 = XOR killed %34, killed %33
+    %62 = XOR killed %32, killed %31
+    %63 = XOR killed %30, killed %29
+    %64 = XOR killed %28, killed %27
+    %65 = XOR killed %26, killed %25
+    %66 = XOR killed %24, killed %23
+    %67 = XOR killed %22, killed %66
+    SB killed %67, %stack.5.st5, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st5, align 4)
+    %68 = XOR killed %21, killed %65
+    %69 = XOR killed %20, killed %64
+    %70 = XOR killed %19, killed %63
+    %71 = XOR killed %18, killed %62
+    %72 = XOR killed %17, killed %61
+    %73 = XOR killed %16, killed %60
+    %74 = XOR killed %15, killed %59
+    %75 = XOR killed %14, killed %58
+    %76 = XOR killed %13, killed %12
+    %77 = XOR killed %11, killed %76
+    %78 = XOR killed %10, killed %9
+    %79 = XOR killed %8, killed %78
+    SB killed %79, %stack.6.st6, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st6, align 4)
+    SB killed %77, %stack.7.st7, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st7, align 4)
+    SB killed %75, %stack.8.st8, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st8, align 4)
+    SB killed %74, %stack.9.st9, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st9, align 4)
+    SB killed %73, %stack.10.st10, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st10, align 4)
+    SB killed %72, %stack.11.st11, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st11, align 4)
+    SB killed %71, %stack.12.st12, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st12, align 4)
+    SB killed %70, %stack.13.st13, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st13, align 4)
+    SB killed %69, %stack.14.st14, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st14, align 4)
+    SB killed %68, %stack.15.st15, 0, <0x426bfa0> = !{!"unison-memory-partition", i32 0} :: (volatile store 1 into %ir.st15, align 4)
+    RetRA
+
+...

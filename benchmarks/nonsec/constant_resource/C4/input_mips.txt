@@ -1,0 +1,7 @@
+Secret a0;
+secMem [a0];
+Public a1;
+pubMem [a1];
+Public a2;
+pubMem [a2];
+Public a3

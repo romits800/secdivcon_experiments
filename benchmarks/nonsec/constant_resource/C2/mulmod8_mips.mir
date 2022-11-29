@@ -1,0 +1,280 @@
+--- |
+  ; ModuleID = 'mulmod8_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @mulmod8_enter(i32 signext %a, i32 signext %b) #0 {
+    %1 = and i32 %a, 255
+    %2 = and i32 %b, 255
+    %3 = icmp eq i32 %1, 0
+    br i1 %3, label %4, label %6
+  
+  ; <label>:4                                       ; preds = %0
+    %5 = sub nsw i32 257, %2
+    br label %18
+  
+  ; <label>:6                                       ; preds = %0
+    %7 = icmp eq i32 %2, 0
+    br i1 %7, label %8, label %10
+  
+  ; <label>:8                                       ; preds = %6
+    %9 = sub nsw i32 257, %1
+    br label %18
+  
+  ; <label>:10                                      ; preds = %6
+    %11 = mul nsw i32 %1, %2
+    %12 = and i32 %11, 255
+    %13 = ashr i32 %11, 8
+    %14 = sub nsw i32 %12, %13
+    %15 = icmp slt i32 %12, %13
+    %16 = select i1 %15, i32 1, i32 0
+    %17 = add nsw i32 %14, %16
+    br label %18
+  
+  ; <label>:18                                      ; preds = %8, %10, %4
+    %.1 = phi i32 [ %5, %4 ], [ %9, %8 ], [ %17, %10 ]
+    %19 = and i32 %.1, 255
+    ret i32 %19
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            mulmod8_enter
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%6' }
+  - { reg: '%a1', virtual-reg: '%7' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 34):
+    successors: %bb.1(37), %bb.2(62)
+    liveins: %a0, %a1
+  
+    %7 = COPY %a1
+    %6 = COPY %a0
+    %1 = ANDi %7, 255
+    %0 = ANDi %6, 255
+    BNE %0, %zero, %bb.2, implicit-def dead %at
+    B %bb.1, implicit-def dead %at
+  
+  bb.1 (%ir-block.4, freq 12):
+    successors: %bb.5(100)
+  
+    %14 = ADDiu %zero, 257
+    %2 = SUBu killed %14, %1
+    B %bb.5, implicit-def dead %at
+  
+  bb.2 (%ir-block.6, freq 21):
+    successors: %bb.3(37), %bb.4(62)
+  
+    BNE %1, %zero, %bb.4, implicit-def dead %at
+    B %bb.3, implicit-def dead %at
+  
+  bb.3 (%ir-block.8, freq 8):
+    successors: %bb.5(100)
+  
+    %13 = ADDiu %zero, 257
+    %3 = SUBu killed %13, %0
+    B %bb.5, implicit-def dead %at
+  
+  bb.4 (%ir-block.10, freq 13):
+    successors: %bb.5(100)
+  
+    %8 = MUL %0, %1, implicit-def dead %hi0, implicit-def dead %lo0
+    %9 = SRL %8, 8
+    %10 = ANDi %8, 255
+    %11 = SUBu %10, %9
+    %12 = SLT %10, %9
+    %4 = ADDu killed %11, killed %12
+  
+  bb.5 (%ir-block.18, freq 34):
+    liveouts: %v0
+  
+    %5 = PHI %4, %bb.4, %3, %bb.3, %2, %bb.1
+    %15 = ANDi %5, 255
+    %v0 = COPY %15
+    RetRA implicit %v0
+
+...
+--- |
+  ; ModuleID = 'mulmod8_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @mulmod8_enter(i32 signext %a, i32 signext %b) #0 {
+    %1 = and i32 %a, 255
+    %2 = and i32 %b, 255
+    %3 = icmp eq i32 %1, 0
+    br i1 %3, label %4, label %6
+  
+  ; <label>:4                                       ; preds = %0
+    %5 = sub nsw i32 257, %2
+    br label %18
+  
+  ; <label>:6                                       ; preds = %0
+    %7 = icmp eq i32 %2, 0
+    br i1 %7, label %8, label %10
+  
+  ; <label>:8                                       ; preds = %6
+    %9 = sub nsw i32 257, %1
+    br label %18
+  
+  ; <label>:10                                      ; preds = %6
+    %11 = mul nsw i32 %1, %2
+    %12 = and i32 %11, 255
+    %13 = ashr i32 %11, 8
+    %14 = sub nsw i32 %12, %13
+    %15 = icmp slt i32 %12, %13
+    %16 = select i1 %15, i32 1, i32 0
+    %17 = add nsw i32 %14, %16
+    br label %18
+  
+  ; <label>:18                                      ; preds = %8, %10, %4
+    %.1 = phi i32 [ %5, %4 ], [ %9, %8 ], [ %17, %10 ]
+    %19 = and i32 %.1, 255
+    ret i32 %19
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            mulmod8_enter
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+  - { id: 11, class: gpr32 }
+  - { id: 12, class: gpr32 }
+  - { id: 13, class: gpr32 }
+  - { id: 14, class: gpr32 }
+  - { id: 15, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%6' }
+  - { reg: '%a1', virtual-reg: '%7' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 34):
+    successors: %bb.1(37), %bb.2(62)
+    liveins: %a0, %a1
+  
+    %7 = COPY %a1
+    %6 = COPY %a0
+    %1 = ANDi %7, 255
+    %0 = ANDi %6, 255
+    BNE %0, %zero, %bb.2, implicit-def dead %at
+    B %bb.1, implicit-def dead %at
+  
+  bb.1 (%ir-block.4, freq 12):
+    successors: %bb.5(100)
+  
+    %14 = ADDiu %zero, 257
+    %2 = SUBu killed %14, %1
+    B %bb.5, implicit-def dead %at
+  
+  bb.2 (%ir-block.6, freq 21):
+    successors: %bb.3(37), %bb.4(62)
+  
+    BNE %1, %zero, %bb.4, implicit-def dead %at
+    B %bb.3, implicit-def dead %at
+  
+  bb.3 (%ir-block.8, freq 8):
+    successors: %bb.5(100)
+  
+    %13 = ADDiu %zero, 257
+    %3 = SUBu killed %13, %0
+    B %bb.5, implicit-def dead %at
+  
+  bb.4 (%ir-block.10, freq 13):
+    successors: %bb.5(100)
+  
+    %8 = MUL %0, %1, implicit-def dead %hi0, implicit-def dead %lo0
+    %9 = SRL %8, 8
+    %10 = ANDi %8, 255
+    %11 = SUBu %10, %9
+    %12 = SLT %10, %9
+    %4 = ADDu killed %11, killed %12
+  
+  bb.5 (%ir-block.18, freq 34):
+    liveouts: %v0
+  
+    %5 = PHI %4, %bb.4, %3, %bb.3, %2, %bb.1
+    %15 = ANDi %5, 255
+    %v0 = COPY %15
+    RetRA implicit %v0
+
+...

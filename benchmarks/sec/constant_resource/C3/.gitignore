@@ -1,0 +1,5 @@
+*.vulnerable
+*.nemdef
+divs_*
+main.c
+*.da

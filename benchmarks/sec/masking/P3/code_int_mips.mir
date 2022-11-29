@@ -1,0 +1,166 @@
+--- |
+  ; ModuleID = 'code_int_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @_Z7computejjj(i32 signext %R, i32 signext %x, i32 signext %rx) #0 {
+    %1 = xor i32 %x, %rx
+    %2 = xor i32 %1, %R
+    %3 = xor i32 %2, %R
+    %4 = xor i32 %3, %1
+    %5 = xor i32 %R, %rx
+    %6 = xor i32 %1, %5
+    %7 = xor i32 %6, %5
+    %8 = xor i32 %7, %4
+    ret i32 %8
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            _Z7computejjj
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%0' }
+  - { reg: '%a1', virtual-reg: '%1' }
+  - { reg: '%a2', virtual-reg: '%2' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %a0, %a1, %a2
+    liveouts: %v0
+  
+    %2 = COPY %a2
+    %1 = COPY %a1
+    %0 = COPY %a0
+    %3 = XOR %0, %2
+    %4 = XOR %1, %2
+    %5 = XOR %4, %3
+    %6 = XOR killed %5, %3
+    %7 = XOR %4, %0
+    %8 = XOR killed %7, %0
+    %9 = XOR killed %8, %4
+    %10 = XOR killed %6, killed %9
+    %v0 = COPY %10
+    RetRA implicit %v0
+
+...
+--- |
+  ; ModuleID = 'code_int_mips.ll'
+  target datalayout = "E-m:m-p:32:32-i8:8:32-i16:16:32-i64:64-n32-S64"
+  target triple = "mips"
+  
+  ; Function Attrs: nounwind
+  define i32 @_Z7computejjj(i32 signext %R, i32 signext %x, i32 signext %rx) #0 {
+    %1 = xor i32 %x, %rx
+    %2 = xor i32 %1, %R
+    %3 = xor i32 %2, %R
+    %4 = xor i32 %3, %1
+    %5 = xor i32 %R, %rx
+    %6 = xor i32 %1, %5
+    %7 = xor i32 %6, %5
+    %8 = xor i32 %7, %4
+    ret i32 %8
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="mips32" "target-features"="+mips32,+soft-float" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.ident = !{!0}
+  
+  !0 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            _Z7computejjj
+alignment:       2
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: gpr32 }
+  - { id: 1, class: gpr32 }
+  - { id: 2, class: gpr32 }
+  - { id: 3, class: gpr32 }
+  - { id: 4, class: gpr32 }
+  - { id: 5, class: gpr32 }
+  - { id: 6, class: gpr32 }
+  - { id: 7, class: gpr32 }
+  - { id: 8, class: gpr32 }
+  - { id: 9, class: gpr32 }
+  - { id: 10, class: gpr32 }
+liveins:         
+  - { reg: '%a0', virtual-reg: '%0' }
+  - { reg: '%a1', virtual-reg: '%1' }
+  - { reg: '%a2', virtual-reg: '%2' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    1
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %a0, %a1, %a2
+    liveouts: %v0
+  
+    %2 = COPY %a2
+    %1 = COPY %a1
+    %0 = COPY %a0
+    %3 = XOR %0, %2
+    %4 = XOR %1, %2
+    %5 = XOR %4, %3
+    %6 = XOR killed %5, %3
+    %7 = XOR %4, %0
+    %8 = XOR killed %7, %0
+    %9 = XOR killed %8, %4
+    %10 = XOR killed %6, killed %9
+    %v0 = COPY %10
+    RetRA implicit %v0
+
+...

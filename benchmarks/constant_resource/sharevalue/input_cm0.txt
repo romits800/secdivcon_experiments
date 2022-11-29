@@ -1,3 +1,0 @@
-Secret r0;
-Public r1;
-Public r2
