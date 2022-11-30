@@ -19,7 +19,7 @@ do
         echo $j
         cp ../*.py ../run_results.sh $j
         pushd $j
-        bash -x run_results.sh mips &> out_results
+        bash -x run_results.sh mips $iter &> out_results
         popd
     done
 
@@ -28,7 +28,7 @@ do
         echo $j
         cp ../*.py ../run_results.sh $j
         pushd $j
-        bash -x run_results.sh thumb &> out_results
+        bash -x run_results.sh thumb $iter &> out_results
         popd
     done
 

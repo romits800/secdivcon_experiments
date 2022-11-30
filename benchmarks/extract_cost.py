@@ -1,5 +1,6 @@
 import json
 import sys
+import math
 
 fils = sys.argv[1:]
 costs = []

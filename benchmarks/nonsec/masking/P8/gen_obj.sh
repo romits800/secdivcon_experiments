@@ -1,6 +1,8 @@
 #!/bin/bash
 bench=$1
 arch=$2
+iter=$3
+
 case $arch in
     mips)
           target=Mips; aflags=""; march=mipsel; mcpu=mips32;;

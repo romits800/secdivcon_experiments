@@ -4,6 +4,7 @@ name=$1
 func=$2
 bsize=$3
 arch=$4
+iter=$5
 
 case $arch in
     mips)
@@ -41,4 +42,4 @@ $UNI model  --target=$target ${aflags}   $name.sec.uni -o $name.json --policy $i
 # Presolving
 $SOLV/gecode-presolver -nogoods false -tabling false -o $name.ext.json --dzn ${name}.dzn  -verbose $name.json
 # Solving
-$SOLV/gecode-secsolver $flags -o $name.out.json --verbose $name.ext.json
+$SOLV/gecode-secsolver $flags -o $name.$iter.out.json --verbose $name.ext.json

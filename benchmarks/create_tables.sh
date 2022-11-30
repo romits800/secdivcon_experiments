@@ -210,7 +210,7 @@ do
         impl=sec
         cp extract_cost.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_cost.py *_cm0.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_cost.py *_cm0.*.out.json | head -1" 2>/dev/null`
         valsec=${command}
         #vals=$vals"\t&\t"$val
         popd &> /dev/null
@@ -218,7 +218,7 @@ do
         impl=nonsec
         cp extract_cost.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_cost.py *_cm0.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_cost.py *_cm0.*.out.json | head -1" 2>/dev/null`
         valnsec=${command}
         #vals=$vals"\t&\t"$val
         popd &> /dev/null
@@ -234,7 +234,7 @@ do
         impl=sec
         cp extract_cost.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_cost.py *_mips.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_cost.py *_mips.*.out.json | head -1" 2>/dev/null`
         valsec=${command}
         #vals=$vals"\t&\t"$val
         popd &> /dev/null
@@ -242,7 +242,7 @@ do
         impl=nonsec
         cp extract_cost.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_cost.py *_mips.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_cost.py *_mips.*.out.json | head -1" 2>/dev/null`
         valnsec=${command}
         #vals=$vals"\t&\t"$val
         popd &> /dev/null
@@ -269,7 +269,7 @@ do
         impl=sec
         cp extract_stime.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_stime.py *_cm0.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_stime.py *_cm0.*.out.json | head -1" 2>/dev/null`
         valsec=$(echo "scale=2;$command/1000.0" | bc -l | awk '{printf "%.2f", $0}')
         #vals=$vals"\t&\t"$val
         popd &> /dev/null
@@ -277,7 +277,7 @@ do
         impl=nonsec
         cp extract_stime.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_stime.py *_cm0.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_stime.py *_cm0.*.out.json | head -1" 2>/dev/null`
         valnsec=$(echo "scale=2;$command/1000.0" | bc -l | awk '{printf "%.2f", $0}')
         #vals=$vals"\t&\t"$val
         popd &> /dev/null
@@ -291,7 +291,7 @@ do
         impl=sec
         cp extract_stime.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_stime.py *_mips.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_stime.py *_mips.*.out.json | head -1" 2>/dev/null`
         valsec=$(echo "scale=2;$command/1000.0" | bc -l | awk '{printf "%.2f", $0}')
         #vals=$vals"\t&\t"$val
         popd &> /dev/null
@@ -299,7 +299,7 @@ do
         impl=nonsec
         cp extract_stime.py $impl/constant_resource/$bench/
         pushd $impl/constant_resource/$bench/ &> /dev/null
-        command=`sh -c "python extract_stime.py *_mips.*out.json | head -1" 2>/dev/null`
+        command=`sh -c "python extract_stime.py *_mips.*.out.json | head -1" 2>/dev/null`
         valnsec=$(echo "scale=2;$command/1000.0" | bc -l | awk '{printf "%.2f", $0}')
         #vals=$vals"\t&\t"$val
         popd &> /dev/null

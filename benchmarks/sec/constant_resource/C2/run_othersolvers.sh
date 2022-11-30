@@ -4,6 +4,7 @@ name=$1
 func=$2
 bsize=$3
 arch=$4
+iter=$5
 
 case $arch in
     mips)
@@ -27,6 +28,7 @@ UNI=${SECCON_PATH}/src/unison/build/uni
 SOLV=${SECCON_PATH}/src/solvers/gecode/
 flags="$flags --disable-copy-dominance-constraints --disable-infinite-register-dominance-constraints --disable-operand-symmetry-breaking-constraints --disable-register-symmetry-breaking-constraints --disable-temporary-symmetry-breaking-constraints --disable-wcet-constraints"
 flags="$flags --global-budget 500 --local-limit 50000 --enable-ct-constraints"
+#flags="$flags --monolithic-budget 5"
 importfl="--copyblck" 
 #flags="$flags --sec-implementation sec_reg_2_mem_2"
 timeout=5400000
@@ -40,4 +42,4 @@ $UNI model  --target=$target ${aflags}   $name.sec.uni -o $name.json --policy $i
 # Presolving
 $SOLV/gecode-presolver -nogoods false -tabling false -o $name.ext.json --dzn ${name}.dzn  -verbose $name.json
 # Solving
-$SOLV/gecode-secsolver $flags -o $name.out.json --verbose $name.ext.json
+$SOLV/gecode-secsolver $flags -o $name.$iter.out.json --verbose $name.ext.json

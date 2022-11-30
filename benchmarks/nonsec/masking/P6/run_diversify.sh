@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pushd ../../../
+pushd ../../../../
 . secdivconenv
 popd
 
