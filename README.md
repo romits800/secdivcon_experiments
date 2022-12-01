@@ -1,7 +1,7 @@
 # SecDivCon Experiments
 
 ## Compile the code
-To use SecConCG, clone this repo, recursively to clone the submodules.
+To use SecDivCon, clone this repo, recursively to clone the submodules.
 
 Then, enter to the `src` directory in `secdivcon`:
 
