@@ -25,9 +25,9 @@ arch=$2
 iter=$3
 case $arch in
     mips)
-          suff=mips;;
+          flags="$flags --extra-branch-cost"; suff=mips;;
     thumb)
-          suff=cm0;;
+          flags="$flags"; suff=cm0;;
     *)
           echo "Give architecture as the second argument"; exit 0;;
 esac
