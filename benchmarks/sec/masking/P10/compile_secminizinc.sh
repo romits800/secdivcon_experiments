@@ -9,9 +9,9 @@ iter=$6
 
 case $arch in
     mips)
-          target=Mips; aflags=""; input=input_mips.txt;;
+          target=Mips; aflags=""; impflags="--reorderinsts"; input=input_mips.txt;;
     thumb)
-          target=Thumb; aflags="--targetoption cortex-m0"; input=input_cm0.txt;;
+          target=Thumb; aflags="--targetoption cortex-m0"; imflags=""; input=input_cm0.txt;;
     *)
           echo "Give architecture as the third argument"; exit 0;;
 esac
@@ -40,12 +40,12 @@ flags="$flags --enable-power-constraints"
 
 
 
-$UNI import --target=$target ${aflags} $name.mir -o $name.uni --function=$func  --goal=speed --maxblocksize=$bsize --policy $input
+$UNI import --target=$target ${aflags} ${impflags} $name.mir -o $name.uni --function=$func --goal=speed --maxblocksize=$bsize --policy $input
 $UNI linearize --target=$target ${aflags} $name.uni -o $name.lssa.uni
 $UNI extend --target=$target ${aflags} $name.lssa.uni -o $name.ext.uni
 $UNI augment --target=$target ${aflags} $name.ext.uni -o $name.alt.uni
-#$UNI secaugment --target=$target ${aflags} --policy $input $name.alt.uni -o $name.sec.uni
-$UNI model  --target=$target ${aflags}   $name.alt.uni -o $name.json --policy $input
+$UNI secaugment --target=$target ${aflags} --policy $input $name.alt.uni -o $name.sec.uni
+$UNI model  --target=$target ${aflags}   $name.sec.uni -o $name.json --policy $input
 $GEC/gecode-presolver -nogoods false -tabling false -o $name.ext.json --dzn ${name}.dzn  -verbose $name.json
  
 $GEC/gecode-secsolver $flags -o $name.$iter.out.json --verbose $name.ext.json

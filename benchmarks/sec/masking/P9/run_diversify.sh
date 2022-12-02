@@ -4,13 +4,13 @@ pushd ../../../
 . secdivconenv
 popd
 
-fname=CPRR13-OptLUT_wires_1
+fname=CPRR13-1_wires_1
 iter=$1
 bash -x diversify_monolithic_one.sh ${fname}_cm0 thumb $iter
 bash -x diversify_monolithic_one.sh ${fname}_mips mips $iter
 
+
 divs=divs_*
-#divs2=$( grep -v reg <<< `echo $divs| tr  ' ' '\n'` )
 divs2=$divs #$( grep -v reg <<< `echo $divs| tr  ' ' '\n'` )
 for i in $divs2
 do

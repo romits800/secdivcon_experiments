@@ -25,10 +25,13 @@ echo "SECCON_PATH:" ${SECCON_PATH}
 
 #UNI=/home/romi/didaktoriko/unison/unison/src/unison/build/uni
 UNI=${SECCON_PATH}/src/unison/build/uni
+#flags="--disable-copy-dominance-constraints --disable-infinite-register-dominance-constraints --disable-operand-symmetry-breaking-constraints --disable-register-symmetry-breaking-constraints --disable-temporary-symmetry-breaking-constraints --disable-wcet-constraints"
+#flags="$flags --sec-implementation sec_reg_2_mem_2"
 GPS=${SECCON_PATH}/src/solvers/gecode/gecode-presolver
 
 
-$UNI import --target=$target ${aflags} $name.mir -o $name.uni --function=$func  --goal=speed  --maxblocksize=$bsize --policy $input
+
+$UNI import --target=$target ${aflags} $name.mir -o $name.uni --function=$func  --goal=speed --maxblocksize=$bsize --policy $input
 $UNI linearize --target=$target ${aflags} $name.uni -o $name.lssa.uni
 $UNI extend --target=$target ${aflags} $name.lssa.uni -o $name.ext.uni
 $UNI augment --target=$target ${aflags} $name.ext.uni -o $name.alt.uni
@@ -38,4 +41,6 @@ $GPS -nogoods false -tabling false -o $name.ext.json --dzn ${name}.dzn  -verbose
  
 minizinc-solver --setuponly --topdown --chuffed --no-diffn --free --rnd -l .chuffed -dzn ${name}.dzn ${name}.ext.json
 
-mzn-crippled-chuffed --fzn-flag --verbosity --fzn-flag 3 --fzn-flag -f --fzn-flag --rnd-seed --fzn-flag 123456 --fzn-flag --time-out --fzn-flag 5400000 -a -s -D good_cumulative=true -D good_diffn=false -D good_member=true ${name}.mzn ${name}.dzn -o ${name}.$iter.out #&& cat ${name}.out
+timeout=5400000
+#timeout=5400000
+mzn-crippled-chuffed --fzn-flag --verbosity --fzn-flag 3 --fzn-flag -f --fzn-flag --rnd-seed --fzn-flag 123456 --fzn-flag --time-out --fzn-flag $timeout -a -s -D good_cumulative=true -D good_diffn=false -D good_member=true ${name}.mzn ${name}.dzn -o ${name}.$iter.out #&& cat ${name}.out

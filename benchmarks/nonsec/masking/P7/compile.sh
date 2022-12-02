@@ -1,12 +1,16 @@
-#!/bin/bash
+#!/bin/bash -x
 
 export PATH=${SECCON_PATH}/src/solvers/gecode:${SECCON_PATH}/src/solvers/multi_backend/minizinc/:${SECCON_PATH}/src/solvers/multi_backend/:${MINIZINC_PATH}:${SECCON_PATH}/src/solvers/multi_backend/common/:${PATH}
 export SECCON_PATH=${SECCON_PATH}
 
-func=whitening
-filen=whitening
-iter=$1
-#120
-bash -x compile_minizinc.sh ${filen}_cm0 $func 40 thumb 0.1 $iter
-bash -x compile_minizinc.sh ${filen}_mips $func 30 mips 0.1 $iter
 
+iter=$1
+file=CPRR13-lut_wires_1
+func=_Z18CPRR13_lut_wires_1iiiiiiiii
+
+bash -x compile_minizinc.sh ${file}_cm0 $func 15 thumb $iter
+
+bash -x run_minizinc.sh ${file}_mips $func 25 mips $iter
+
+
+cat ${file}_mips.$iter.out  | outfilter.pl ${file}_mips.out.json.chuffed.last .chuffed  > ${file}_mips.$iter.out.json

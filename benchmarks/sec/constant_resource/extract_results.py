@@ -12,6 +12,7 @@ import cPickle as pickle
 import getopt
 import os
 import json
+import math
 #from masking import *
 #from spec_cpu  import *
 

@@ -4,11 +4,10 @@ pushd ../../../../
 . secdivconenv
 popd
 
+fname=whitening
 iter=$1
-fname=CPRR13-1_wires_1
 bash -x diversify_monolithic_one.sh ${fname}_cm0 thumb $iter
 bash -x diversify_monolithic_one.sh ${fname}_mips mips $iter
-
 
 divs=divs_*
 divs2=$divs #$( grep -v reg <<< `echo $divs| tr  ' ' '\n'` )
