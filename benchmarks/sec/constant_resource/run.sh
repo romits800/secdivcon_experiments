@@ -9,7 +9,7 @@ iter=$1
 for i in C{0..4}
 do
     pushd $i
-    #bash -x compile.sh $iter &> out_run  # compile
+    bash -x compile.sh $iter &> out_run  # compile
     bash -x run_diversify.sh $iter &> out_div
 
     for j in divs_*_mips

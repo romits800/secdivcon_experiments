@@ -9,9 +9,9 @@ iter=$1
 for i in C{0..4} # if-check modexp sharevalue mulmod8 kruskal 
 do
     pushd $i
-    #bash -x clean.sh
+    ##bash -x clean.sh
     bash -x compile.sh $iter &> out_run  # compile
-    #rm -r divs_*
+    ##rm -r divs_*
     bash -x run_diversify.sh $iter &> out_div
 
     for j in divs_*_mips

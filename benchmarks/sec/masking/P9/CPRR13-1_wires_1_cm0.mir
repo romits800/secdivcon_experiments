@@ -152,12 +152,13 @@ fixedStack:
 body:             |
   bb.0 (%ir-block.0, freq 8):
     liveins: %r0, %r1, %r2, %r3
-    liveouts: %r0
+    liveouts: %r0, %r1
   
     %3 = COPY %r3
     %2 = COPY %r2
     %1 = COPY %r1
     %0 = COPY %r0
+    %14, %cpsr = tEOR %0, %1, 14, _
     %4, %cpsr = tMUL %1, %1, 14, _
     %5, %cpsr = tEOR %4, %2, 14, _
     %6 = tLDRspi %fixed-stack.3, 0, 14, _, <0x4a40660> = !{!"unison-memory-partition", i32 0} :: (load 4 from stack)
@@ -168,7 +169,6 @@ body:             |
     %11, %cpsr = tMUL %1, %3, 14, _
     %12, %cpsr = tEOR %2, %11, 14, _
     %13, %cpsr = tEOR %12, %11, 14, _
-    %14, %cpsr = tEOR %0, %1, 14, _
     %15, %cpsr = tEOR %14, %3, 14, _
     %16, %cpsr = tMUL %1, %15, 14, _
     %17, %cpsr = tEOR %13, %16, 14, _
@@ -203,8 +203,8 @@ body:             |
     %46, %cpsr = tEOR %45, %41, 14, _
     %47 = tLDRspi %fixed-stack.0, 0, 14, _, <0x4a34160> = !{!"unison-memory-partition", i32 4} :: (load 4 from stack, align 8)
     %48, %cpsr = tEOR %46, killed %47, 14, _
-    %49, %cpsr = tEOR %48, killed %44, 14, _
-    %r0 = COPY %49
-    tBX_RET 14, _, implicit %r0
+    %r0 = COPY %44
+    %r1 = COPY %48
+    tBX_RET 14, _, implicit %r0, implicit %r1
 
 ...

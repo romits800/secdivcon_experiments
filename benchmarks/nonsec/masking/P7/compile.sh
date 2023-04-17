@@ -8,7 +8,8 @@ iter=$1
 file=CPRR13-lut_wires_1
 func=_Z18CPRR13_lut_wires_1iiiiiiiii
 
-bash -x compile_minizinc.sh ${file}_cm0 $func 15 thumb $iter
+bash -x compile_minizinc.sh ${file}_cm0 $func 10 thumb $iter
+#bash -x compile_minizinc.sh ${file}_cm0 $func 15 thumb $iter
 
 bash -x run_minizinc.sh ${file}_mips $func 25 mips $iter
 

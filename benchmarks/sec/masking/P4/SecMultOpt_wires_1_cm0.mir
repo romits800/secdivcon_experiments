@@ -78,7 +78,7 @@ fixedStack:
 body:             |
   bb.0 (%ir-block.0, freq 8):
     liveins: %r0, %r1, %r2, %r3
-    liveouts: %r0
+    liveouts: %r0, %r1
   
     %3 = COPY %r3
     %2 = COPY %r2
@@ -95,8 +95,8 @@ body:             |
     %12, %cpsr = tEOR %6, killed %11, 14, _
     %13, %cpsr = tMUL %2, %3, 14, _
     %14, %cpsr = tEOR %13, %9, 14, _
-    %15, %cpsr = tEOR %12, killed %14, 14, _
-    %r0 = COPY %15
-    tBX_RET 14, _, implicit %r0
+    %r0 = COPY %12
+    %r1 = COPY %14
+    tBX_RET 14, _, implicit %r0, implicit %r1
 
 ...

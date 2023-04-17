@@ -13,8 +13,8 @@ filen=CPRR13-OptLUT_wires_1
 #bash -x compile_secminizinc.sh ${filen}_mips $func 25 mips $iter
 #sleep 10m
 #bash -x compile_secminizinc.sh ${filen}_cm0 $func 15 thumb $iter
-#bash -x compile_secminizinc.sh ${filen}_cm0 $func 10 thumb $iter
-bash -x compile_secminizinc.sh ${filen}_cm0 $func 11 thumb $iter
+bash -x compile_secminizinc.sh ${filen}_cm0 $func 10 thumb $iter
+#bash -x compile_secminizinc.sh ${filen}_cm0 $func 11 thumb $iter
 
 sleep 10m
 bash -x run_minizinc.sh ${filen}_mips $func 25 mips $iter

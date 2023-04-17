@@ -123,14 +123,14 @@ do
     do  
         for i in  sec/masking/$bench/divs_${j}_${dist}_cm0/; 
         do  
-            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&'; else echo \"-&-&-&1\"; fi" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
         done;
         for i in  nonsec/masking/$bench/divs_${j}_${dist}_cm0/; 
         do  
-            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&'; else echo \"-&-&-&1\"; fi" 2>/dev/null`
-            #command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
+            #command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&'; else echo \"-&-&-&1\"; fi" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
         done;
@@ -140,15 +140,15 @@ do
     do
         for i in  sec/masking/$bench/divs_${j}_${dist}_mips/; 
         do  
-            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&'; else echo \"-&-&-&1\"; fi" 2>/dev/null`
-            #command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
+            #command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&'; else echo \"-&-&-&1\"; fi" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
         done;
         for i in  nonsec/masking/$bench/divs_${j}_${dist}_mips/; 
         do  
-            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&'; else echo \"-&-&-&1\"; fi" 2>/dev/null`
-            #command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
+            #command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&'; else echo \"-&-&-&1\"; fi" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
         done;
@@ -166,13 +166,15 @@ do
     do  
         for i in  sec/constant_resource/$bench/divs_${j}_${dist}_cm0/; 
         do  
-            command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
+            #command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
        done;
         for i in  nonsec/constant_resource/$bench/divs_${j}_${dist}_cm0/; 
         do  
-            command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
+            #command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
        done;
@@ -182,13 +184,15 @@ do
     do  
         for i in  sec/constant_resource/$bench/divs_${j}_${dist}_mips/; 
         do  
-            command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
+            #command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
        done;
         for i in  nonsec/constant_resource/$bench/divs_${j}_${dist}_mips/; 
         do  
-            command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
+            command=`sh -c "if test -f "$i/results.csv"; then tail -1 $i/results.csv | tr ',' '&' | cut -d\"&\" -f 1-3; else echo \"-&-&-\"; fi" 2>/dev/null`
+            #command=`sh -c "tail -1 $i/results.csv | tr ',' '&'" 2>/dev/null`
             val=${command}
             vals=$vals"\t&\t"$val
        done;

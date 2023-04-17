@@ -10,7 +10,7 @@ for i in P{0..10}
 do
     pushd $i
     #bash -x clean.sh
-    #bash -x compile.sh $iter &> out_compile  # compile
+    # bash -x compile.sh $iter &> out_compile  # compile
     #rm -r divs_*
     bash -x run_diversify.sh $iter &> out_div
 

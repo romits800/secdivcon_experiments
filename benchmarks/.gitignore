@@ -5,3 +5,4 @@ out*
 *.last
 *.unison.mir
 *.json
+gen_out_json.sh

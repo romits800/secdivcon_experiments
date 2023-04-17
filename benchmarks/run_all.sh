@@ -5,7 +5,6 @@ pushd ../
 popd
 
 # clean old results
-
 rm -r */*/*/divs_*
 
 for iter in {0..4}

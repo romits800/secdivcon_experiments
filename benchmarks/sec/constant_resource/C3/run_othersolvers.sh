@@ -28,6 +28,7 @@ UNI=${SECCON_PATH}/src/unison/build/uni
 SOLV=${SECCON_PATH}/src/solvers/gecode/
 flags="$flags --disable-copy-dominance-constraints --disable-infinite-register-dominance-constraints --disable-operand-symmetry-breaking-constraints --disable-register-symmetry-breaking-constraints --disable-temporary-symmetry-breaking-constraints --disable-wcet-constraints"
 flags="$flags --global-budget 500 --local-limit 50000 --enable-ct-constraints"
+flags="$flags --step-aggressiveness 0.05"
 importfl="--copyblcks" 
 #importfl="--copyblcks" 
 #flags="$flags --sec-implementation sec_reg_2_mem_2"

@@ -4,54 +4,32 @@
   target triple = "thumbv6m--"
   
   ; Function Attrs: nounwind
-  define arm_aapcscc zeroext i1 @_Z7computebbb(i1 zeroext %C, i1 zeroext %rx, i1 zeroext %x) #0 {
-    %1 = zext i1 %C to i8
-    %2 = zext i1 %rx to i8
-    %3 = zext i1 %x to i8
-    %4 = trunc i8 %3 to i1
-    %5 = zext i1 %4 to i32
-    %6 = trunc i8 %2 to i1
-    %7 = zext i1 %6 to i32
-    %8 = xor i32 %5, %7
-    %9 = icmp ne i32 %8, 0
-    %10 = zext i1 %9 to i8
-    %11 = trunc i8 %1 to i1
-    %12 = zext i1 %11 to i32
-    %13 = trunc i8 %2 to i1
-    %14 = zext i1 %13 to i32
-    %15 = xor i32 %12, %14
-    %16 = icmp ne i32 %15, 0
-    %17 = zext i1 %16 to i8
-    %18 = trunc i8 %17 to i1
-    %19 = zext i1 %18 to i32
-    %20 = trunc i8 %10 to i1
-    %21 = zext i1 %20 to i32
-    %22 = xor i32 %19, %21
-    %23 = icmp ne i32 %22, 0
-    %24 = zext i1 %23 to i8
-    %25 = trunc i8 %24 to i1
-    %26 = zext i1 %25 to i32
-    %27 = trunc i8 %17 to i1
-    %28 = zext i1 %27 to i32
-    %29 = xor i32 %26, %28
-    %30 = icmp ne i32 %29, 0
-    %31 = zext i1 %30 to i8
-    %32 = trunc i8 %31 to i1
-    %33 = zext i1 %32 to i32
-    %34 = trunc i8 %1 to i1
-    %35 = zext i1 %34 to i32
-    %36 = xor i32 %33, %35
-    %37 = icmp ne i32 %36, 0
-    %38 = zext i1 %37 to i8
-    %39 = trunc i8 %38 to i1
-    %40 = zext i1 %39 to i32
-    %41 = trunc i8 %1 to i1
-    %42 = zext i1 %41 to i32
-    %43 = xor i32 %40, %42
-    %44 = icmp ne i32 %43, 0
-    %45 = zext i1 %44 to i8
-    %46 = trunc i8 %45 to i1
-    ret i1 %46
+  define arm_aapcscc zeroext i8 @_Z7computeccc(i8 zeroext %C, i8 zeroext %rx, i8 zeroext %x) #0 {
+    %1 = zext i8 %x to i32
+    %2 = zext i8 %rx to i32
+    %3 = xor i32 %1, %2
+    %4 = trunc i32 %3 to i8
+    %5 = zext i8 %C to i32
+    %6 = zext i8 %rx to i32
+    %7 = xor i32 %5, %6
+    %8 = trunc i32 %7 to i8
+    %9 = zext i8 %8 to i32
+    %10 = zext i8 %4 to i32
+    %11 = xor i32 %9, %10
+    %12 = trunc i32 %11 to i8
+    %13 = zext i8 %12 to i32
+    %14 = zext i8 %8 to i32
+    %15 = xor i32 %13, %14
+    %16 = trunc i32 %15 to i8
+    %17 = zext i8 %16 to i32
+    %18 = zext i8 %C to i32
+    %19 = xor i32 %17, %18
+    %20 = trunc i32 %19 to i8
+    %21 = zext i8 %20 to i32
+    %22 = zext i8 %C to i32
+    %23 = xor i32 %21, %22
+    %24 = trunc i32 %23 to i8
+    ret i8 %24
   }
   
   attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
@@ -65,7 +43,105 @@
 
 ...
 ---
-name:            _Z7computebbb
+name:            _Z7computeccc
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+  - { id: 8, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%0' }
+  - { reg: '%r1', virtual-reg: '%1' }
+  - { reg: '%r2', virtual-reg: '%2' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    0
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %r0, %r1, %r2
+    liveouts: %r0
+  
+    %2 = COPY %r2
+    %1 = COPY %r1
+    %0 = COPY %r0
+    %3, %cpsr = tEOR %2, %1, 14, _
+    %4, %cpsr = tEOR %0, %1, 14, _
+    %5, %cpsr = tEOR %4, killed %3, 14, _
+    %6, %cpsr = tEOR %5, %4, 14, _
+    %7, %cpsr = tEOR %6, %0, 14, _
+    %8, %cpsr = tEOR %7, %0, 14, _
+    %r0 = COPY %8
+    tBX_RET 14, _, implicit %r0
+
+...
+--- |
+  ; ModuleID = 'code_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: nounwind
+  define arm_aapcscc zeroext i8 @_Z7computeccc(i8 zeroext %C, i8 zeroext %rx, i8 zeroext %x) #0 {
+    %1 = zext i8 %x to i32
+    %2 = zext i8 %rx to i32
+    %3 = xor i32 %1, %2
+    %4 = trunc i32 %3 to i8
+    %5 = zext i8 %C to i32
+    %6 = zext i8 %rx to i32
+    %7 = xor i32 %5, %6
+    %8 = trunc i32 %7 to i8
+    %9 = zext i8 %8 to i32
+    %10 = zext i8 %4 to i32
+    %11 = xor i32 %9, %10
+    %12 = trunc i32 %11 to i8
+    %13 = zext i8 %12 to i32
+    %14 = zext i8 %8 to i32
+    %15 = xor i32 %13, %14
+    %16 = trunc i32 %15 to i8
+    %17 = zext i8 %16 to i32
+    %18 = zext i8 %C to i32
+    %19 = xor i32 %17, %18
+    %20 = trunc i32 %19 to i8
+    %21 = zext i8 %20 to i32
+    %22 = zext i8 %C to i32
+    %23 = xor i32 %21, %22
+    %24 = trunc i32 %23 to i8
+    ret i8 %24
+  }
+  
+  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            _Z7computeccc
 alignment:       1
 exposesReturnsTwice: false
 hasInlineAsm:    false

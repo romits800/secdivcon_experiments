@@ -102,8 +102,8 @@ body:             |
     %14, %cpsr = tEOR %13, killed %12, 14, _
     %15, %cpsr = tMUL %2, %2, 14, _
     %16, %cpsr = tEOR %15, %3, 14, _
-    %17, %cpsr = tEOR %16, killed %14, 14, _
-    %r0 = COPY %17
-    tBX_RET 14, _, implicit %r0
+    %r0 = COPY %14
+    %r1 = COPY %16
+    tBX_RET 14, _, implicit %r0, implicit %r1
 
 ...

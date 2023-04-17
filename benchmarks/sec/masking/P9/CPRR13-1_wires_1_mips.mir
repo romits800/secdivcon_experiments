@@ -153,7 +153,7 @@ fixedStack:
 body:             |
   bb.0 (%ir-block.0, freq 8):
     liveins: %a0, %a1, %a2, %a3
-    liveouts: %v0
+    liveouts: %v0, %v1
   
     %3 = COPY %a3
     %2 = COPY %a2
@@ -204,8 +204,8 @@ body:             |
     %50 = XOR %16, killed %43
     %51 = XOR killed %50, killed %47
     %52 = XOR killed %46, killed %51
-    %53 = XOR killed %49, killed %52
-    %v0 = COPY %53
-    RetRA implicit %v0
+    %v0 = COPY %49
+    %v1 = COPY %52
+    RetRA implicit %v0, implicit %v1
 
 ...

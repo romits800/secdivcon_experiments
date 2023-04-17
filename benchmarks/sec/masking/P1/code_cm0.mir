@@ -3,19 +3,16 @@
   target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
   target triple = "thumbv6m--"
   
-  ; Function Attrs: nounwind
-  define arm_aapcscc i32 @_Z7computejjjj(i32 %r1, i32 %r2, i32 %st2_orig, i32 %st10_orig) #0 {
+  ; Function Attrs: norecurse nounwind readnone
+  define arm_aapcscc i64 @_Z7computejjjj(i32 %r1, i32 %r2, i32 %st2_orig, i32 %st10_orig) #0 {
     %1 = xor i32 %st10_orig, %r1
     %2 = xor i32 %st2_orig, %r1
-    %3 = xor i32 %2, 0
-    %4 = xor i32 %1, 0
-    %5 = xor i32 %4, 0
-    %6 = xor i32 %3, 0
-    %7 = sub i32 %5, %6
-    ret i32 %7
+    %3 = sub i32 %1, %2
+    %4 = zext i32 %3 to i64
+    ret i64 %4
   }
   
-  attributes #0 = { nounwind "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  attributes #0 = { norecurse nounwind readnone "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
   
   !llvm.module.flags = !{!0, !1}
   !llvm.ident = !{!2}
@@ -41,6 +38,7 @@ registers:
   - { id: 4, class: tgpr }
   - { id: 5, class: tgpr }
   - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
 liveins:         
   - { reg: '%r0', virtual-reg: '%0' }
   - { reg: '%r2', virtual-reg: '%2' }
@@ -61,16 +59,92 @@ frameInfo:
   hasMustTailInVarArgFunc: false
 body:             |
   bb.0 (%ir-block.0, freq 8):
-    liveins: %r0, %r2, %r3
-    liveouts: %r0
+    liveins: %r0, %r1, %r2, %r3
+    liveouts: %r0, %r1
   
     %3 = COPY %r3
     %2 = COPY %r2
+    %1 = COPY %r1
     %0 = COPY %r0
     %4, %cpsr = tEOR %2, %0, 14, _
     %5, %cpsr = tEOR %3, %0, 14, _
-    %6, %cpsr = tSUBrr killed %5, killed %4, 14, _
-    %r0 = COPY %6
-    tBX_RET 14, _, implicit %r0
+    %r0 = COPY %4
+    %r1 = COPY %5
+    tBX_RET 14, _, implicit %r0, implicit %r1
+
+...
+--- |
+  ; ModuleID = 'code_cm0.ll'
+  target datalayout = "e-m:e-p:32:32-i64:64-v128:64:128-a:0:32-n32-S64"
+  target triple = "thumbv6m--"
+  
+  ; Function Attrs: norecurse nounwind readnone
+  define arm_aapcscc i64 @_Z7computejjjj(i32 %r1, i32 %r2, i32 %st2_orig, i32 %st10_orig) #0 {
+    %1 = xor i32 %st10_orig, %r1
+    %2 = xor i32 %st2_orig, %r1
+    %3 = sub i32 %1, %2
+    %4 = zext i32 %3 to i64
+    ret i64 %4
+  }
+  
+  attributes #0 = { norecurse nounwind readnone "disable-tail-calls"="false" "less-precise-fpmad"="false" "no-frame-pointer-elim"="true" "no-frame-pointer-elim-non-leaf" "no-infs-fp-math"="false" "no-nans-fp-math"="false" "stack-protector-buffer-size"="8" "target-cpu"="cortex-m0" "target-features"="+soft-float,+strict-align,-crypto,-neon" "unsafe-fp-math"="false" "use-soft-float"="true" }
+  
+  !llvm.module.flags = !{!0, !1}
+  !llvm.ident = !{!2}
+  
+  !0 = !{i32 1, !"wchar_size", i32 4}
+  !1 = !{i32 1, !"min_enum_size", i32 4}
+  !2 = !{!"clang version 3.8.0-2ubuntu4 (tags/RELEASE_380/final)"}
+
+...
+---
+name:            _Z7computejjjj
+alignment:       1
+exposesReturnsTwice: false
+hasInlineAsm:    false
+isSSA:           true
+tracksRegLiveness: true
+tracksSubRegLiveness: false
+registers:       
+  - { id: 0, class: tgpr }
+  - { id: 1, class: tgpr }
+  - { id: 2, class: tgpr }
+  - { id: 3, class: tgpr }
+  - { id: 4, class: tgpr }
+  - { id: 5, class: tgpr }
+  - { id: 6, class: tgpr }
+  - { id: 7, class: tgpr }
+liveins:         
+  - { reg: '%r0', virtual-reg: '%0' }
+  - { reg: '%r2', virtual-reg: '%2' }
+  - { reg: '%r3', virtual-reg: '%3' }
+frameInfo:       
+  isFrameAddressTaken: false
+  isReturnAddressTaken: false
+  hasStackMap:     false
+  hasPatchPoint:   false
+  stackSize:       0
+  offsetAdjustment: 0
+  maxAlignment:    0
+  adjustsStack:    false
+  hasCalls:        false
+  maxCallFrameSize: 0
+  hasOpaqueSPAdjustment: false
+  hasVAStart:      false
+  hasMustTailInVarArgFunc: false
+body:             |
+  bb.0 (%ir-block.0, freq 8):
+    liveins: %r0, %r1, %r2, %r3
+    liveouts: %r0, %r1
+  
+    %3 = COPY %r3
+    %2 = COPY %r2
+    %1 = COPY %r1
+    %0 = COPY %r0
+    %4, %cpsr = tEOR %2, %0, 14, _
+    %5, %cpsr = tEOR %3, %0, 14, _
+    %r0 = COPY %4
+    %r1 = COPY %5
+    tBX_RET 14, _, implicit %r0, implicit %r1
 
 ...
